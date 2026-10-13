@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOM chat</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;
+ background:#09090f;color:#f7f4ff;
+ font-family:Arial,Tahoma,sans-serif;
+ display:flex;justify-content:center;align-items:center;
+ padding:20px
+}
+.app{
+ width:100%;max-width:420px;min-height:650px;
+ background:#11111c;border:1px solid #302044;
+ border-radius:26px;padding:24px;
+ box-shadow:0 15px 60px #0008
+}
+.brand{text-align:center;margin:12px 0 32px}
+.logo{
+ width:68px;height:68px;margin:auto;
+ border-radius:22px;display:grid;place-items:center;
+ background:linear-gradient(135deg,#a855f7,#6d28d9);
+ font-size:30px;font-weight:bold;
+ box-shadow:0 8px 30px #8b5cf655
+}
+h1{font-size:29px;margin:15px 0 8px}
+.purple{color:#c084fc}
+.sub{color:#9995aa;font-size:14px}
+label{display:block;margin:20px 0 9px;color:#ded5ee}
+input{
+ width:100%;padding:15px;border-radius:12px;
+ border:1px solid #393047;background:#191724;
+ color:white;font-size:15px;outline:none
+}
+input:focus{border-color:#a855f7}
+button{
+ width:100%;padding:15px;margin-top:18px;
+ border:0;border-radius:12px;
+ background:linear-gradient(100deg,#9333ea,#6d28d9);
+ color:white;font-size:16px;font-weight:bold;cursor:pointer
+}
+button.secondary{background:#211a30;border:1px solid #413052}
+.note{text-align:center;color:#817b91;font-size:12px;line-height:1.8;margin-top:24px}
+#chat{display:none}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:25px}
+.avatar{
+ width:48px;height:48px;border-radius:16px;
+ background:#34204e;display:grid;place-items:center;font-size:23px
+}
+.status{color:#a78bfa;font-size:12px;margin-top:5px}
+.chatbox{
+ height:300px;overflow:auto;background:#0c0b13;
+ border:1px solid #292133;border-radius:16px;padding:12px
+}
+.msg{
+ background:#34204e;padding:11px 14px;border-radius:14px;
+ margin:10px 0 10px auto;max-width:90%;overflow-wrap:anywhere
+}
+.small{font-size:12px;color:#aaa0b8}
+.composer{display:flex;gap:8px;margin-top:12px}
+.composer input{min-width:0}
+.composer button{width:65px;flex-shrink:0;margin:0}
+</style>
+</head>
+<body>
+<main class="app">
+<section id="login">
+ <div class="brand">
+  <div class="logo">T</div>
+  <h1>TOM <span class="purple">chat</span></h1>
+  <p class="sub">مساحتك الخاصة للتواصل ✨</p>
+ </div>
+ <h2>أهلاً بعودتك 👋</h2>
+ <p class="sub">اكتب اسمك للدخول إلى المعاينة</p>
+ <form id="loginForm">
+  <label for="username">اسم المستخدم</label>
+  <input id="username" required maxlength="30" placeholder="اكتب اسمك هنا">
+  <button type="submit">دخول إلى TOM chat ←</button>
+ </form>
+ <p class="note">واجهة تجريبية أولية<br>تسجيل الدخول والمحادثات الحقيقية ستُضاف لاحقاً.</p>
+ <button class="secondary" id="langBtn">English</button>
+</section>
+<section id="chat">
+ <div class="top">
+  <div class="avatar">✦</div>
+  <div><strong>TOM chat</strong><div class="status" id="welcome">مرحباً بك</div></div>
+ </div>
+ <h2>رسائلك <span class="purple">💬</span></h2>
+ <p class="sub">هذه محادثة تجريبية على جهازك</p>
+ <div class="chatbox" id="messages">
+  <p class="small">أهلاً بك في أول نسخة من TOM chat!</p>
+ </div>
+ <form id="messageForm" class="composer">
+  <input id="message" required maxlength="500" placeholder="اكتب رسالة...">
+  <button type="submit">➤</button>
+ </form>
+ <button class="secondary" id="logout">تسجيل الخروج</button>
+ <p class="note">الرسائل هنا تجريبية ولا تُرسل لمستخدمين آخرين.</p>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+$('loginForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const name=$('username').value.trim();
+ if(!name)return;
+ $('welcome').textContent='أهلاً، '+name;
+ $('login').style.display='none';
+ $('chat').style.display='block';
+});
+$('messageForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const input=$('message'),value=input.value.trim();
+ if(!value)return;
+ const bubble=document.createElement('div');
+ bubble.className='msg';
+ bubble.textContent=value;
+ $('messages').appendChild(bubble);
+ input.value='';
+ $('messages').scrollTop=$('messages').scrollHeight;
+});
+$('logout').addEventListener('click',()=>{
+ $('chat').style.display='none';
+ $('login').style.display='block';
+});
+$('langBtn').addEventListener('click',()=>{
+ const english=document.documentElement.lang==='ar';
+ document.documentElement.lang=english?'en':'ar';
+ document.documentElement.dir=english?'ltr':'rtl';
+ $('langBtn').textContent=english?'العربية':'English';
+ document.querySelector('.brand .sub').textContent=english?'Your space to connect ✨':'مساحتك الخاصة للتواصل ✨';
+ document.querySelector('#login h2').textContent=english?'Welcome back 👋':'أهلاً بعودتك 👋';
+ document.querySelector('#login .sub:last-of-type').textContent=english?'Enter your name to preview the app':'اكتب اسمك للدخول إلى المعاينة';
+ document.querySelector('label').textContent=english?'Username':'اسم المستخدم';
+ $('username').placeholder=english?'Enter your name':'اكتب اسمك هنا';
+ $('loginForm button').textContent=english?'Enter TOM chat →':'دخول إلى TOM chat ←';
+ $('welcome').textContent=english?'Welcome':'مرحباً بك';
+ document.querySelector('#chat h2').innerHTML=english?'Your messages <span class="purple">💬</span>':'رسائلك <span class="purple">💬</span>';
+ document.querySelector('#chat .sub').textContent=english?'A demo chat on your device':'هذه محادثة تجريبية على جهازك';
+ $('message').placeholder=english?'Write a message...':'اكتب رسالة...';
+ $('logout').textContent=english?'Log out':'تسجيل الخروج';
+ document.querySelector('#chat .note').textContent=english?'Messages are only a demo and are not sent to other users.':'الرسائل هنا تجريبية ولا تُرسل لمستخدمين آخرين.';
+});
+</script>
+</body>
+</html>
