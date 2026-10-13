@@ -1,359 +1,314 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#09090f">
-  <title>TOM chat | دردشتك</title>
-  <style>
-    :root {
-      --bg: #09090f;
-      --panel: #13131e;
-      --purple: #8b5cf6;
-      --purple2: #6d28d9;
-      --text: #f5f3ff;
-      --muted: #aaa5bd;
-      --border: #292438;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; background: var(--bg); color: var(--text);
-      font-family: system-ui, Arial, sans-serif; min-height: 100vh;
-    }
-    button, input { font: inherit; }
-    button { cursor: pointer; }
-    .top {
-      padding: 18px 20px; display: flex; align-items: center;
-      gap: 12px; border-bottom: 1px solid var(--border);
-      background: #101019; position: sticky; top: 0; z-index: 2;
-    }
-    .logo {
-      width: 44px; height: 44px; border-radius: 15px;
-      display: grid; place-items: center; font-weight: 900;
-      font-size: 25px; background: linear-gradient(135deg,#a78bfa,#6d28d9);
-      box-shadow: 0 0 24px #8b5cf633;
-    }
-    .brand { font-size: 21px; font-weight: 800; }
-    .brand span { color: #a78bfa; }
-    .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-    main { max-width: 760px; margin: 24px auto; padding: 0 14px 24px; }
-    .panel {
-      background: var(--panel); border: 1px solid var(--border);
-      border-radius: 22px; padding: 22px;
-    }
-    h2 { margin: 0 0 8px; font-size: 23px; }
-    .muted { color: var(--muted); font-size: 14px; line-height: 1.8; }
-    .field { margin-top: 16px; }
-    label { display: block; margin-bottom: 7px; font-size: 14px; }
-    input {
-      width: 100%; padding: 13px 14px; border-radius: 12px;
-      border: 1px solid var(--border); background: #0c0c14;
-      color: white; outline: none;
-    }
-    input:focus { border-color: var(--purple); }
-    .btn {
-      border: 0; border-radius: 12px; padding: 13px 16px;
-      color: white; font-weight: 700; background: var(--purple2);
-    }
-    .btn:hover { background: var(--purple); }
-    .btn:disabled { opacity: .55; cursor: wait; }
-    .wide { width: 100%; margin-top: 18px; }
-    .secondary { background: #252033; }
-    .switch {
-      color: #c4b5fd; background: none; border: 0;
-      padding: 10px 0; margin-top: 8px;
-    }
-    .notice { margin-top: 14px; font-size: 13px; line-height: 1.7; color: #c4b5fd; }
-    .error { color: #fda4af; }
-    .hidden { display: none !important; }
-    .chat-head {
-      display: flex; justify-content: space-between;
-      align-items: center; gap: 10px; margin-bottom: 14px;
-    }
-    .online { font-size: 12px; color: #86efac; margin-top: 5px; }
-    #messages {
-      height: min(54vh, 490px); min-height: 280px; overflow-y: auto;
-      background: #0c0c14; border: 1px solid var(--border);
-      border-radius: 16px; padding: 14px;
-      display: flex; flex-direction: column; gap: 12px;
-    }
-    .msg {
-      max-width: 88%; align-self: flex-start;
-      background: #242033; border: 1px solid #342b4b;
-      padding: 10px 12px; border-radius: 14px 14px 14px 4px;
-      overflow-wrap: anywhere;
-    }
-    .msg.mine {
-      align-self: flex-end; background: #4c268e;
-      border-color: #7041bd; border-radius: 14px 14px 4px 14px;
-    }
-    .msg-name { font-size: 12px; color: #d8b4fe; margin-bottom: 5px; }
-    .msg-body { white-space: pre-wrap; line-height: 1.6; }
-    .msg-time { font-size: 10px; color: #d1c6e6; margin-top: 5px; }
-    .composer { display: flex; gap: 9px; margin-top: 12px; }
-    .composer input { min-width: 0; flex: 1; }
-    .footer { text-align: center; color: #777187; font-size: 12px; margin-top: 18px; }
-    @media(max-width:480px) {
-      main { margin-top: 16px; }
-      .panel { padding: 16px; }
-      .brand { font-size: 19px; }
-      .msg { max-width: 94%; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090711">
+<title>TOM chat</title>
+<style>
+:root{
+  --bg:#090711;--panel:#151020;--purple:#9b5cff;
+  --purple2:#702cff;--text:#f8f4ff;--muted:#aaa0bd;
+  --border:#302342;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:radial-gradient(ellipse at top,#21103c 0%,var(--bg) 52%);
+  color:var(--text);font-family:system-ui,Arial,sans-serif;min-height:100vh
+}
+button,input{font:inherit}
+button{cursor:pointer}
+header{
+  position:sticky;top:0;z-index:5;background:#0b0815ed;
+  border-bottom:1px solid var(--border);padding:14px 18px;
+  display:flex;align-items:center;gap:12px;backdrop-filter:blur(12px)
+}
+.logo{
+  width:49px;height:49px;flex-shrink:0;display:grid;place-items:center;
+  border:1px solid #863bff;border-radius:16px;
+  background:linear-gradient(145deg,#261044,#100b1f);
+  box-shadow:0 0 22px #862bff30
+}
+.logo svg{width:37px;height:37px}
+.brand{font-weight:900;font-size:23px;letter-spacing:.3px}
+.brand span{color:#b77aff}
+.tagline{font-size:12px;color:var(--muted);margin-top:2px}
+main{max-width:760px;margin:25px auto;padding:0 14px 28px}
+.panel{
+  background:#151020ed;border:1px solid var(--border);
+  border-radius:23px;padding:22px;box-shadow:0 15px 55px #0003
+}
+h2{margin:0 0 7px;font-size:23px}
+.muted{color:var(--muted);font-size:14px;line-height:1.8}
+.field{margin-top:16px}
+label{display:block;margin-bottom:7px;font-size:14px}
+input{
+  width:100%;padding:13px 14px;border-radius:12px;
+  border:1px solid var(--border);background:#0c0914;
+  color:white;outline:none;min-width:0
+}
+input:focus{border-color:var(--purple);box-shadow:0 0 0 2px #9b5cff18}
+.btn{
+  border:1px solid transparent;border-radius:12px;padding:12px 16px;
+  color:white;font-weight:750;background:linear-gradient(110deg,#873cff,#6122d0)
+}
+.btn:hover{filter:brightness(1.13)}
+.btn:disabled{opacity:.55;cursor:wait}
+.wide{width:100%;margin-top:18px}
+.secondary{background:#292035;border-color:#3a2c4c}
+.switch{background:none;border:0;color:#c9a8ff;padding:12px 0}
+.hidden{display:none!important}
+.notice{margin-top:12px;font-size:13px;line-height:1.7;color:#d1b6ff}
+.error{color:#fda4af}
+.chat-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
+.status{font-size:12px;color:#86efac;margin-top:5px}
+#messages{
+  height:min(55vh,500px);min-height:280px;overflow-y:auto;
+  background:#0c0914;border:1px solid var(--border);border-radius:17px;
+  padding:14px;display:flex;flex-direction:column;gap:12px
+}
+.msg{
+  max-width:88%;align-self:flex-start;background:#272039;
+  border:1px solid #403051;padding:10px 13px;
+  border-radius:15px 15px 15px 4px;overflow-wrap:anywhere
+}
+.msg.mine{
+  align-self:flex-end;background:linear-gradient(135deg,#57249c,#402070);
+  border-color:#7542b0;border-radius:15px 15px 4px 15px
+}
+.msg-name{font-size:12px;color:#d9baff;margin-bottom:5px}
+.msg-body{white-space:pre-wrap;line-height:1.65}
+.msg-time{font-size:10px;color:#d3c3e9;margin-top:5px}
+.composer{display:flex;gap:9px;margin-top:12px}
+.composer input{flex:1}
+.footer{text-align:center;color:#766b87;font-size:12px;margin-top:20px}
+@media(max-width:480px){
+  main{margin-top:15px}.panel{padding:16px}
+  .brand{font-size:21px}.msg{max-width:94%}
+}
+</style>
 </head>
 <body>
-  <header class="top">
-    <div class="logo">T</div>
-    <div>
-      <div class="brand">TOM <span>chat</span></div>
-      <div class="sub">دردشتك، عالمك</div>
+<header>
+  <div class="logo" aria-label="TOM chat logo">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="purple" x1="12" y1="12" x2="87" y2="90" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#e6c7ff"/>
+          <stop offset=".52" stop-color="#b05bff"/>
+          <stop offset="1" stop-color="#6926ff"/>
+        </linearGradient>
+      </defs>
+      <path d="M24 19H76C86 19 91 25 91 35V56C91 67 84 74 73 74H48L25 91L30 73C18 71 10 64 10 52V35C10 25 15 19 24 19Z"
+        stroke="url(#purple)" stroke-width="7" stroke-linejoin="round"/>
+      <path d="M28 34H72L65 44H46V64L32 75V44H23L28 34Z" fill="url(#purple)"/>
+      <circle cx="58" cy="57" r="3.5" fill="#e8caff"/>
+      <circle cx="69" cy="57" r="3.5" fill="#d6a5ff"/>
+      <circle cx="80" cy="57" r="3.5" fill="#ad65ff"/>
+    </svg>
+  </div>
+  <div>
+    <div class="brand">TOM <span>chat</span></div>
+    <div class="tagline">دردشتك، عالمك 💜</div>
+  </div>
+</header>
+
+<main>
+  <section id="authPanel" class="panel">
+    <h2 id="authTitle">أهلاً بك في TOM chat</h2>
+    <div class="muted" id="authSubtitle">أنشئ حسابك وابدأ التواصل.</div>
+    <form id="authForm">
+      <div class="field" id="nameField">
+        <label for="displayName">اسم المستخدم</label>
+        <input id="displayName" maxlength="40" autocomplete="nickname"
+          placeholder="الاسم الذي سيظهر للآخرين">
+      </div>
+      <div class="field">
+        <label for="email">البريد الإلكتروني</label>
+        <input id="email" type="email" required autocomplete="email"
+          placeholder="name@example.com">
+      </div>
+      <div class="field">
+        <label for="password">كلمة المرور</label>
+        <input id="password" type="password" required minlength="6"
+          autocomplete="current-password" placeholder="6 أحرف على الأقل">
+      </div>
+      <button id="authSubmit" class="btn wide" type="submit">إنشاء حساب</button>
+    </form>
+    <button id="switchMode" class="switch" type="button">عندك حساب؟ سجّل الدخول</button>
+    <div id="authStatus" class="notice" role="status"></div>
+  </section>
+
+  <section id="chatPanel" class="panel hidden">
+    <div class="chat-head">
+      <div>
+        <h2>غرفة الدردشة 💬</h2>
+        <div class="muted">أهلاً <span id="welcomeName"></span></div>
+        <div class="status">● متصل بحسابك</div>
+      </div>
+      <button id="logoutBtn" class="btn secondary" type="button">خروج</button>
     </div>
-  </header>
+    <div id="messages" aria-live="polite">
+      <div class="muted">جارٍ تحميل الرسائل...</div>
+    </div>
+    <form id="messageForm" class="composer">
+      <input id="messageInput" maxlength="2000" required autocomplete="off"
+        placeholder="اكتب رسالتك هنا...">
+      <button id="sendBtn" class="btn" type="submit">إرسال</button>
+    </form>
+    <div id="chatStatus" class="notice" role="status"></div>
+  </section>
+  <div class="footer">TOM chat © 2026 · تواصل بسهولة</div>
+</main>
 
-  <main>
-    <section id="authPanel" class="panel">
-      <h2 id="authTitle">مرحباً بك في TOM chat 💜</h2>
-      <div class="muted" id="authSubtitle">سجّل حسابك وابدأ الدردشة مع الآخرين.</div>
+<script type="module">
+import {initializeApp} from
+  "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import {
+  getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,
+  onAuthStateChanged,updateProfile,signOut
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+import {
+  getFirestore,collection,addDoc,query,orderBy,limit,
+  onSnapshot,serverTimestamp
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
-      <form id="authForm">
-        <div class="field" id="nameField">
-          <label for="displayName">اسم المستخدم</label>
-          <input id="displayName" maxlength="40" autocomplete="nickname"
-                 placeholder="الاسم الذي سيظهر للآخرين">
-        </div>
-        <div class="field">
-          <label for="email">البريد الإلكتروني</label>
-          <input id="email" type="email" required autocomplete="email"
-                 placeholder="name@example.com">
-        </div>
-        <div class="field">
-          <label for="password">كلمة المرور</label>
-          <input id="password" type="password" required minlength="6"
-                 autocomplete="current-password" placeholder="6 أحرف على الأقل">
-        </div>
-        <button class="btn wide" id="authSubmit" type="submit">إنشاء حساب</button>
-      </form>
+const firebaseConfig = {
+  apiKey: "AIzaSyCrRxm1YvDQ6OkImMn5yvXc-VtMqS804E8",
+  authDomain: "tom-chat-c2412.firebaseapp.com",
+  projectId: "tom-chat-c2412",
+  storageBucket: "tom-chat-c2412.firebasestorage.app",
+  messagingSenderId: "627903451599",
+  appId: "1:627903451599:web:c0f8b80372637401e002ba",
+  measurementId: "G-C3RTB7NC07"
+};
 
-      <button class="switch" id="switchMode" type="button">
-        عندك حساب؟ سجّل الدخول
-      </button>
-      <div id="authStatus" class="notice" role="status" aria-live="polite"></div>
-    </section>
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const $=id=>document.getElementById(id);
+let isSignup=true,stopMessages=null,authBusy=false,sendBusy=false;
 
-    <section id="chatPanel" class="panel hidden">
-      <div class="chat-head">
-        <div>
-          <h2>غرفة الدردشة 💬</h2>
-          <div class="muted">أهلاً <span id="welcomeName"></span></div>
-          <div class="online">● متصل بحسابك</div>
-        </div>
-        <button id="logoutBtn" class="btn secondary" type="button">خروج</button>
-      </div>
+function status(id,message,error=false){
+  $(id).textContent=message;
+  $(id).classList.toggle("error",error);
+}
+function errorText(e){
+  const messages={
+    "auth/email-already-in-use":"هذا البريد مسجل بالفعل. سجّل الدخول.",
+    "auth/invalid-email":"البريد الإلكتروني غير صحيح.",
+    "auth/weak-password":"استخدم كلمة مرور من 6 أحرف على الأقل.",
+    "auth/invalid-credential":"البريد أو كلمة المرور غير صحيحة.",
+    "auth/network-request-failed":"تحقق من اتصال الإنترنت.",
+    "auth/too-many-requests":"محاولات كثيرة. انتظر قليلاً.",
+    "permission-denied":"قاعدة البيانات أو صلاحياتها لم تُضبط بعد.",
+    "unavailable":"الخدمة غير متاحة حالياً. حاول لاحقاً."
+  };
+  return messages[e.code]||e.message||"حدث خطأ. حاول مرة أخرى.";
+}
 
-      <div id="messages" aria-live="polite">
-        <div class="muted">جارٍ تحميل الرسائل...</div>
-      </div>
+$("switchMode").addEventListener("click",()=>{
+  isSignup=!isSignup;
+  $("authTitle").textContent=isSignup?"أهلاً بك في TOM chat":"مرحباً بعودتك";
+  $("authSubtitle").textContent=isSignup?
+    "أنشئ حسابك وابدأ التواصل.":"أدخل بياناتك لتسجيل الدخول.";
+  $("nameField").classList.toggle("hidden",!isSignup);
+  $("authSubmit").textContent=isSignup?"إنشاء حساب":"تسجيل الدخول";
+  $("switchMode").textContent=isSignup?
+    "عندك حساب؟ سجّل الدخول":"ما عندك حساب؟ أنشئ حساباً";
+  status("authStatus","");
+});
 
-      <form id="messageForm" class="composer">
-        <input id="messageInput" maxlength="2000" required
-               placeholder="اكتب رسالتك هنا..." autocomplete="off">
-        <button id="sendBtn" class="btn" type="submit">إرسال</button>
-      </form>
-      <div id="chatStatus" class="notice" role="status" aria-live="polite"></div>
-    </section>
-
-    <div class="footer">TOM chat © 2026 · تواصل مع الآخرين بسهولة</div>
-  </main>
-
-  <script type="module">
-    import { initializeApp } from
-      "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
-
-    import {
-      getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
-      onAuthStateChanged, updateProfile, signOut
-    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
-
-    import {
-      getFirestore, collection, addDoc, query, orderBy, limit,
-      onSnapshot, serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyCrRxm1YvDQ6OkImMn5yvXc-VtMqS804E8",
-      authDomain: "tom-chat-c2412.firebaseapp.com",
-      projectId: "tom-chat-c2412",
-      storageBucket: "tom-chat-c2412.firebasestorage.app",
-      messagingSenderId: "627903451599",
-      appId: "1:627903451599:web:c0f8b80372637401e002ba",
-      measurementId: "G-C3RTB7NC07"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    const $ = id => document.getElementById(id);
-    let isSignup = true;
-    let stopMessages = null;
-    let busy = false;
-
-    function showStatus(id, message, isError = false) {
-      const el = $(id);
-      el.textContent = message;
-      el.classList.toggle("error", isError);
+$("authForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  if(authBusy)return;
+  authBusy=true;
+  $("authSubmit").disabled=true;
+  status("authStatus","جارٍ تنفيذ الطلب...");
+  try{
+    const email=$("email").value.trim();
+    const password=$("password").value;
+    const name=$("displayName").value.trim();
+    if(isSignup){
+      if(!name)throw new Error("اكتب اسم المستخدم أولاً.");
+      const result=await createUserWithEmailAndPassword(auth,email,password);
+      await updateProfile(result.user,{displayName:name});
+    }else{
+      await signInWithEmailAndPassword(auth,email,password);
     }
+  }catch(e){status("authStatus",errorText(e),true)}
+  finally{authBusy=false;$("authSubmit").disabled=false}
+});
 
-    function readableError(error) {
-      const errors = {
-        "auth/email-already-in-use": "هذا البريد مسجل بالفعل. سجّل الدخول.",
-        "auth/invalid-email": "البريد الإلكتروني غير صحيح.",
-        "auth/weak-password": "كلمة المرور ضعيفة؛ استخدم 6 أحرف على الأقل.",
-        "auth/invalid-credential": "البريد أو كلمة المرور غير صحيحة.",
-        "auth/network-request-failed": "تحقق من اتصال الإنترنت وحاول مجدداً.",
-        "auth/too-many-requests": "محاولات كثيرة. انتظر قليلاً ثم حاول.",
-        "permission-denied": "صلاحيات قاعدة البيانات غير مضبوطة بعد.",
-        "unavailable": "الخدمة غير متاحة حالياً. تحقق من الإنترنت."
-      };
-      return errors[error.code] || error.message || "حدث خطأ. حاول مجدداً.";
+$("logoutBtn").addEventListener("click",async()=>{
+  try{if(stopMessages)stopMessages();stopMessages=null;await signOut(auth)}
+  catch(e){status("chatStatus",errorText(e),true)}
+});
+
+function startChat(user){
+  $("authPanel").classList.add("hidden");
+  $("chatPanel").classList.remove("hidden");
+  $("welcomeName").textContent=user.displayName||user.email;
+  status("chatStatus","");
+  const box=$("messages");
+  box.replaceChildren();
+  if(stopMessages)stopMessages();
+
+  const q=query(collection(db,"messages"),orderBy("createdAt","asc"),limit(100));
+  stopMessages=onSnapshot(q,snapshot=>{
+    box.replaceChildren();
+    if(snapshot.empty){
+      const empty=document.createElement("div");
+      empty.className="muted";
+      empty.textContent="لا توجد رسائل بعد. ابدأ المحادثة!";
+      box.append(empty);return;
     }
-
-    $("switchMode").addEventListener("click", () => {
-      isSignup = !isSignup;
-      $("authTitle").textContent = isSignup
-        ? "مرحباً بك في TOM chat 💜" : "سجّل دخولك";
-      $("authSubtitle").textContent = isSignup
-        ? "أنشئ حساباً وابدأ الدردشة." : "أدخل بيانات حسابك للمتابعة.";
-      $("nameField").classList.toggle("hidden", !isSignup);
-      $("authSubmit").textContent = isSignup ? "إنشاء حساب" : "تسجيل الدخول";
-      $("switchMode").textContent = isSignup
-        ? "عندك حساب؟ سجّل الدخول" : "ما عندك حساب؟ أنشئ حساباً";
-      showStatus("authStatus", "");
+    snapshot.forEach(record=>{
+      const m=record.data();
+      const item=document.createElement("div");
+      item.className="msg"+(m.uid===user.uid?" mine":"");
+      const name=document.createElement("div");
+      name.className="msg-name";name.textContent=m.name||"مستخدم";
+      const body=document.createElement("div");
+      body.className="msg-body";body.textContent=m.text||"";
+      const time=document.createElement("div");
+      time.className="msg-time";
+      time.textContent=m.createdAt?.toDate?
+        m.createdAt.toDate().toLocaleString("ar"):"الآن";
+      item.append(name,body,time);box.append(item);
     });
+    box.scrollTop=box.scrollHeight;
+  },e=>status("chatStatus",errorText(e),true));
+}
 
-    $("authForm").addEventListener("submit", async event => {
-      event.preventDefault();
-      if (busy) return;
-      busy = true;
-      $("authSubmit").disabled = true;
-      showStatus("authStatus", "جارٍ تنفيذ الطلب...");
-
-      const email = $("email").value.trim();
-      const password = $("password").value;
-      const displayName = $("displayName").value.trim();
-
-      try {
-        if (isSignup) {
-          if (!displayName) throw new Error("اكتب اسم المستخدم أولاً.");
-          const result = await createUserWithEmailAndPassword(auth, email, password);
-          await updateProfile(result.user, { displayName });
-        } else {
-          await signInWithEmailAndPassword(auth, email, password);
-        }
-      } catch (error) {
-        showStatus("authStatus", readableError(error), true);
-      } finally {
-        busy = false;
-        $("authSubmit").disabled = false;
-      }
+$("messageForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const user=auth.currentUser;
+  const text=$("messageInput").value.trim();
+  if(!user||!text||sendBusy)return;
+  sendBusy=true;$("sendBtn").disabled=true;
+  try{
+    await addDoc(collection(db,"messages"),{
+      uid:user.uid,
+      name:user.displayName||user.email,
+      text,
+      createdAt:serverTimestamp()
     });
+    $("messageInput").value="";
+    status("chatStatus","");
+  }catch(e){status("chatStatus",errorText(e),true)}
+  finally{sendBusy=false;$("sendBtn").disabled=false}
+});
 
-    $("logoutBtn").addEventListener("click", async () => {
-      try {
-        if (stopMessages) stopMessages();
-        stopMessages = null;
-        await signOut(auth);
-      } catch (error) {
-        showStatus("chatStatus", readableError(error), true);
-      }
-    });
-
-    function startChat(user) {
-      $("authPanel").classList.add("hidden");
-      $("chatPanel").classList.remove("hidden");
-      $("welcomeName").textContent = user.displayName || user.email;
-      showStatus("chatStatus", "");
-      const box = $("messages");
-      box.replaceChildren();
-      if (stopMessages) stopMessages();
-
-      const messagesQuery = query(
-        collection(db, "messages"),
-        orderBy("createdAt", "asc"),
-        limit(100)
-      );
-
-      stopMessages = onSnapshot(messagesQuery, snapshot => {
-        box.replaceChildren();
-        if (snapshot.empty) {
-          const empty = document.createElement("div");
-          empty.className = "muted";
-          empty.textContent = "لا توجد رسائل بعد. ابدأ المحادثة!";
-          box.append(empty);
-          return;
-        }
-
-        snapshot.forEach(docSnap => {
-          const msg = docSnap.data();
-          const item = document.createElement("div");
-          item.className = "msg" + (msg.uid === user.uid ? " mine" : "");
-
-          const name = document.createElement("div");
-          name.className = "msg-name";
-          name.textContent = msg.name || "مستخدم";
-
-          const body = document.createElement("div");
-          body.className = "msg-body";
-          body.textContent = msg.text || "";
-
-          const time = document.createElement("div");
-          time.className = "msg-time";
-          time.textContent = msg.createdAt?.toDate
-            ? msg.createdAt.toDate().toLocaleString("ar")
-            : "الآن";
-
-          item.append(name, body, time);
-          box.append(item);
-        });
-        box.scrollTop = box.scrollHeight;
-      }, error => showStatus("chatStatus", readableError(error), true));
-    }
-
-    $("messageForm").addEventListener("submit", async event => {
-      event.preventDefault();
-      const user = auth.currentUser;
-      const text = $("messageInput").value.trim();
-      if (!user || !text || busy) return;
-
-      busy = true;
-      $("sendBtn").disabled = true;
-      try {
-        await addDoc(collection(db, "messages"), {
-          uid: user.uid,
-          name: user.displayName || user.email,
-          text,
-          createdAt: serverTimestamp()
-        });
-        $("messageInput").value = "";
-        showStatus("chatStatus", "");
-      } catch (error) {
-        showStatus("chatStatus", readableError(error), true);
-      } finally {
-        busy = false;
-        $("sendBtn").disabled = false;
-      }
-    });
-
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        startChat(user);
-      } else {
-        if (stopMessages) stopMessages();
-        stopMessages = null;
-        $("chatPanel").classList.add("hidden");
-        $("authPanel").classList.remove("hidden");
-      }
-    });
-  </script>
+onAuthStateChanged(auth,user=>{
+  if(user){startChat(user)}
+  else{
+    if(stopMessages)stopMessages();
+    stopMessages=null;
+    $("chatPanel").classList.add("hidden");
+    $("authPanel").classList.remove("hidden");
+  }
+});
+</script>
 </body>
 </html>
