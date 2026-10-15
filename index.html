@@ -1,127 +1,277 @@
-<!-- شاشة إدارة الأصدقاء والبحث -->
-<section id="friendsPanel" class="panel hidden">
-  <div class="chat-head">
-    <h2>الأصدقاء والبحث 🔍</h2>
-    <button id="backToMainBtn" class="btn secondary" type="button">الدردشة العامة</button>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090711">
+<title>TOM chat</title>
+<style>
+:root{--bg:#090711;--panel:#151020;--purple:#9b5cff;--border:#302342;--text:#f8f4ff;--muted:#aaa0bd}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#21103c,var(--bg) 55%);color:var(--text);font-family:system-ui,Arial,sans-serif;min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+header{display:flex;align-items:center;gap:12px;padding:15px 18px;background:#0b0815;border-bottom:1px solid var(--border)}
+.logo{width:48px;height:48px;display:grid;place-items:center;border:1px solid #863bff;border-radius:15px;background:linear-gradient(145deg,#261044,#100b1f);color:#d8b5ff;font-weight:900;font-size:28px;box-shadow:0 0 22px #862bff30}
+.brand{font-size:23px;font-weight:900}.brand span{color:#b77aff}
+.tagline,.muted{color:var(--muted);font-size:13px;line-height:1.8}
+main{max-width:720px;margin:25px auto;padding:0 14px}
+.panel{background:#151020ed;border:1px solid var(--border);border-radius:22px;padding:22px;box-shadow:0 15px 50px #0003}
+h2{margin:0 0 7px;font-size:23px}
+.field{margin-top:15px}
+label{display:block;margin-bottom:7px;font-size:14px}
+input{width:100%;padding:13px;border:1px solid var(--border);border-radius:12px;background:#0c0914;color:white;outline:none}
+input:focus{border-color:var(--purple)}
+.btn{padding:12px 16px;border:0;border-radius:12px;background:linear-gradient(110deg,#873cff,#6122d0);color:white;font-weight:750}
+.btn:disabled{opacity:.6}
+.wide{width:100%;margin-top:18px}
+.secondary{background:#292035;border:1px solid #40304f}
+.link{background:none;border:0;color:#c9a8ff;padding:12px 0}
+.hidden{display:none!important}
+.notice{font-size:13px;line-height:1.8;color:#d1b6ff;margin-top:12px;overflow-wrap:anywhere}
+.error{color:#fda4af}
+.chat-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}
+#messages{height:52vh;min-height:260px;overflow-y:auto;background:#0c0914;border:1px solid var(--border);border-radius:15px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:90%;align-self:flex-start;background:#272039;border:1px solid #403051;padding:10px 13px;border-radius:14px;overflow-wrap:anywhere}
+.msg.mine{align-self:flex-end;background:#50218a}
+.msg-name{font-size:12px;color:#d9baff;margin-bottom:5px}
+.msg-body{white-space:pre-wrap;line-height:1.7}
+.msg-time{font-size:10px;color:#d3c3e9;margin-top:5px}
+.composer{display:flex;gap:9px;margin-top:12px}
+.composer input{flex:1;min-width:0}
+.footer{text-align:center;color:#766b87;font-size:12px;margin:20px}
+@media(max-width:460px){.panel{padding:16px}.brand{font-size:21px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">T</div>
+  <div>
+    <div class="brand">TOM <span>chat</span></div>
+    <div class="tagline">دردشتك، عالمك 💜</div>
   </div>
-  
-  <div class="field">
-    <label for="searchUserInput">ابحث عن اسم مستخدم</label>
-    <div style="display:flex; gap:8px;">
-      <input id="searchUserInput" placeholder="اكتب اسم المستخدم كاملاً..." />
-      <button id="searchBtn" class="btn">بحث</button>
+</header>
+
+<main>
+<section id="authPanel" class="panel">
+  <h2 id="authTitle">أهلاً بك في TOM chat</h2>
+  <p id="authSubtitle" class="muted">أنشئ حسابك وابدأ التواصل.</p>
+
+  <form id="authForm">
+    <div class="field" id="nameField">
+      <label for="displayName">اسم المستخدم</label>
+      <input id="displayName" maxlength="30" autocomplete="nickname"
+        placeholder="مثلاً: tom_user">
     </div>
-  </div>
-  
-  <div id="searchResults" class="notice"></div>
-  
-  <hr style="border-color: var(--border); margin: 20px 0;">
-  
-  <h3>طلبات الصداقة الواردة 📥</h3>
-  <div id="requestsList" class="muted">لا توجد طلبات جديدة.</div>
-  
-  <h3 style="margin-top: 20px;">قائمة أصدقائك 👥</h3>
-  <div id="friendsList" class="muted">ليس لديك أصدقاء بعد.</div>
+    <div class="field">
+      <label for="email">البريد الإلكتروني</label>
+      <input id="email" type="email" required autocomplete="email"
+        placeholder="name@example.com">
+    </div>
+    <div class="field">
+      <label for="password">كلمة المرور</label>
+      <input id="password" type="password" required minlength="6"
+        autocomplete="current-password" placeholder="6 أحرف على الأقل">
+    </div>
+    <button id="authSubmit" class="btn wide" type="submit">إنشاء حساب</button>
+  </form>
+
+  <button id="forgotBtn" class="link" type="button">نسيت كلمة المرور؟</button>
+  <br>
+  <button id="switchMode" class="link" type="button">عندك حساب؟ سجّل الدخول</button>
+  <div id="authStatus" class="notice" role="status"></div>
 </section>
 
-<!-- زر الانتقال لقسم الأصدقاء من شاشة الدردشة الرئيسية -->
-<div style="margin-top: 10px;">
-  <button id="openFriendsBtn" class="btn secondary wide" type="button">إدارة الأصدقاء والبحث عن مستخدمين 👥</button>
-</div>
+<section id="chatPanel" class="panel hidden">
+  <div class="chat-head">
+    <div>
+      <h2>غرفة الدردشة 💬</h2>
+      <div class="muted">مرحباً <span id="welcomeName"></span></div>
+    </div>
+    <button id="logoutBtn" class="btn secondary" type="button">خروج</button>
+  </div>
+  <div id="messages" aria-live="polite">
+    <div class="muted">جارٍ تحميل الرسائل...</div>
+  </div>
+  <form id="messageForm" class="composer">
+    <input id="messageInput" maxlength="2000" required autocomplete="off"
+      placeholder="اكتب رسالتك...">
+    <button id="sendBtn" class="btn" type="submit">إرسال</button>
+  </form>
+  <div id="chatStatus" class="notice" role="status"></div>
+</section>
+<div class="footer">TOM chat © 2026</div>
+</main>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
 import {
-  getFirestore, collection, addDoc, query, where, getDocs, doc, setDoc, updateDoc, onSnapshot, orderBy, limit, serverTimestamp
+  getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,
+  sendPasswordResetEmail,onAuthStateChanged,updateProfile,signOut
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+import {
+  getFirestore,collection,addDoc,query,orderBy,limit,
+  onSnapshot,serverTimestamp
 } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
-// 1. حفظ بيانات المستخدم في مجموعة users عند التسجيل
-async function saveUserProfile(user, name) {
-  const userRef = doc(db, "users", user.uid);
-  await setDoc(userRef, {
-    uid: user.uid,
-    displayName: name,
-    email: user.email
-  }, { merge: true });
+const firebaseConfig = {
+  apiKey: "AIzaSyCrRxm1YvDQ6OkImMn5yvXc-VtMqS804E8",
+  authDomain: "tom-chat-c2412.firebaseapp.com",
+  projectId: "tom-chat-c2412",
+  storageBucket: "tom-chat-c2412.firebasestorage.app",
+  messagingSenderId: "627903451599",
+  appId: "1:627903451599:web:c0f8b80372637401e002ba",
+  measurementId: "G-C3RTB7NC07"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const $=id=>document.getElementById(id);
+let isSignup=true,authBusy=false,sendBusy=false,stopMessages=null;
+
+function showStatus(id,text,isError=false){
+  $(id).textContent=text;
+  $(id).classList.toggle("error",isError);
+}
+function friendlyError(e){
+  const map={
+    "auth/email-already-in-use":"هذا البريد مسجل بالفعل. سجّل الدخول.",
+    "auth/invalid-email":"البريد الإلكتروني غير صحيح.",
+    "auth/weak-password":"كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
+    "auth/invalid-credential":"البريد أو كلمة المرور غير صحيحة.",
+    "auth/user-not-found":"لم نجد حساباً بهذه البيانات.",
+    "auth/too-many-requests":"محاولات كثيرة. انتظر قليلاً ثم حاول.",
+    "auth/network-request-failed":"تحقق من اتصال الإنترنت.",
+    "auth/operation-not-allowed":"فعّل Email/Password من إعدادات Firebase Authentication.",
+    "permission-denied":"تعذر الوصول إلى قاعدة البيانات. تحقق من إعداداتها وقواعد الأمان."
+  };
+  return map[e.code]||e.message||"حدث خطأ. حاول مرة أخرى.";
 }
 
-// تعديل دالة التسجيل لديك لتشمل حفظ الملف الشخصي:
-// داخل createUserWithEmailAndPassword بعد التحديث:
-// await updateProfile(result.user,{displayName:name});
-// await saveUserProfile(result.user, name);
+$("switchMode").addEventListener("click",()=>{
+  isSignup=!isSignup;
+  $("authTitle").textContent=isSignup?"أهلاً بك في TOM chat":"مرحباً بعودتك";
+  $("authSubtitle").textContent=isSignup?"أنشئ حسابك وابدأ التواصل.":"سجّل الدخول للمتابعة.";
+  $("nameField").classList.toggle("hidden",!isSignup);
+  $("authSubmit").textContent=isSignup?"إنشاء حساب":"تسجيل الدخول";
+  $("switchMode").textContent=isSignup?"عندك حساب؟ سجّل الدخول":"ما عندك حساب؟ أنشئ حساباً";
+  showStatus("authStatus","");
+});
 
-
-// 2. البحث عن مستخدمين
-document.getElementById("searchBtn").addEventListener("click", async () => {
-  const queryName = document.getElementById("searchUserInput").value.trim();
-  const resultsDiv = document.getElementById("searchResults");
-  if (!queryName) return;
-
-  resultsDiv.textContent = "جارٍ البحث...";
-  try {
-    const usersRef = collection(db, "users");
-    const q = query(usersRef, where("displayName", "==", queryName));
-    const snapshot = await getDocs(q);
-
-    resultsDiv.replaceChildren();
-    if (snapshot.empty) {
-      resultsDiv.textContent = "لم يتم العثور على مستخدم بهذا الاسم.";
-      return;
-    }
-
-    snapshot.forEach(docSnap => {
-      const userData = docSnap.data();
-      if (userData.uid === auth.currentUser.uid) return; // لا تقم بإظهار نفسك
-
-      const item = document.createElement("div");
-      item.style.cssText = "display:flex; justify-content:space-between; align-items:center; margin-top:10px;";
-      item.innerHTML = `<span>${userData.displayName}</span>`;
-      
-      const addBtn = document.createElement("button");
-      addBtn.className = "btn";
-      addBtn.textContent = "إرسال طلب صداقة";
-      addBtn.onclick = async () => {
-        try {
-          await addDoc(collection(db, "friendRequests"), {
-            fromUid: auth.currentUser.uid,
-            fromName: auth.currentUser.displayName,
-            toUid: userData.uid,
-            status: "pending",
-            createdAt: serverTimestamp()
-          });
-          alert("تم إرسال طلب الصداقة بنجاح!");
-        } catch (err) {
-          alert("خطأ في إرسال الطلب: " + err.message);
-        }
-      };
-      item.appendChild(addBtn);
-      resultsDiv.appendChild(item);
-    });
-  } catch (err) {
-    resultsDiv.textContent = "حدث خطأ أثناء البحث.";
+$("forgotBtn").addEventListener("click",async()=>{
+  const email=$("email").value.trim();
+  if(!email){
+    showStatus("authStatus","اكتب بريدك الإلكتروني أولاً، ثم اضغط «نسيت كلمة المرور؟».",true);
+    $("email").focus();
+    return;
+  }
+  $("forgotBtn").disabled=true;
+  try{
+    await sendPasswordResetEmail(auth,email);
+    showStatus("authStatus","إذا كان البريد مسجلاً، فستصلك رسالة لإعادة تعيين كلمة المرور. افحص البريد الوارد والرسائل غير المرغوب فيها.");
+  }catch(e){
+    showStatus("authStatus",friendlyError(e),true);
+  }finally{
+    $("forgotBtn").disabled=false;
   }
 });
 
+$("authForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  if(authBusy)return;
+  authBusy=true;
+  $("authSubmit").disabled=true;
+  showStatus("authStatus","جارٍ تنفيذ الطلب...");
+  try{
+    const email=$("email").value.trim();
+    const password=$("password").value;
+    if(isSignup){
+      const name=$("displayName").value.trim();
+      if(!/^[a-zA-Z0-9_]{3,20}$/.test(name)){
+        throw new Error("اسم المستخدم يجب أن يكون من 3 إلى 20 حرفاً إنجليزياً أو رقماً أو _.");
+      }
+      const result=await createUserWithEmailAndPassword(auth,email,password);
+      await updateProfile(result.user,{displayName:name});
+    }else{
+      await signInWithEmailAndPassword(auth,email,password);
+    }
+  }catch(e){showStatus("authStatus",friendlyError(e),true)}
+  finally{authBusy=false;$("authSubmit").disabled=false}
+});
 
-// 3. إنشاء أو فتح محادثة خاصة سرية بين صديقين
-async function openPrivateChat(friendUid, friendName) {
-  const myUid = auth.currentUser.uid;
-  // ترتيب المعرفات لضمان عدم تكرار وثيقة المحادثة بغض النظر عن البادئ
-  const participants = [myUid, friendUid].sort();
-  
-  const chatsRef = collection(db, "chats");
-  const q = query(chatsRef, where("participants", "==", participants));
-  const snapshot = await getDocs(q);
+$("logoutBtn").addEventListener("click",async()=>{
+  try{if(stopMessages)stopMessages();stopMessages=null;await signOut(auth)}
+  catch(e){showStatus("chatStatus",friendlyError(e),true)}
+});
 
-  let chatId = "";
-  if (!snapshot.empty) {
-    chatId = snapshot.docs[0].id;
-  } else {
-    // إنشاء محادثة جديدة خاصة بهما فقط
-    const newChatDoc = await addDoc(chatsRef, {
-      participants: participants,
-      createdAt: serverTimestamp()
+function startChat(user){
+  $("authPanel").classList.add("hidden");
+  $("chatPanel").classList.remove("hidden");
+  $("welcomeName").textContent=user.displayName||"صديقنا";
+  showStatus("chatStatus","");
+  const box=$("messages");
+  box.replaceChildren();
+  if(stopMessages)stopMessages();
+
+  const q=query(collection(db,"messages"),orderBy("createdAt","asc"),limit(100));
+  stopMessages=onSnapshot(q,snapshot=>{
+    box.replaceChildren();
+    if(snapshot.empty){
+      const empty=document.createElement("div");
+      empty.className="muted";
+      empty.textContent="لا توجد رسائل بعد. ابدأ المحادثة!";
+      box.append(empty);
+      return;
+    }
+    snapshot.forEach(doc=>{
+      const m=doc.data();
+      const item=document.createElement("div");
+      item.className="msg"+(m.uid===user.uid?" mine":"");
+      const name=document.createElement("div");
+      name.className="msg-name";
+      name.textContent=m.name||"مستخدم";
+      const body=document.createElement("div");
+      body.className="msg-body";
+      body.textContent=m.text||"";
+      const time=document.createElement("div");
+      time.className="msg-time";
+      time.textContent=m.createdAt?.toDate?m.createdAt.toDate().toLocaleString("ar"):"الآن";
+      item.append(name,body,time);
+      box.append(item);
     });
-    chatId = newChatDoc.id;
-  }
-
- / انتقل إلى واجهة المحادثة الخاصة (يمكنك توجيه واجهة الرسائل للتركيز على chatId هذا)
-  alert("تم فتح المحادثة الخاصة مع: " + friendName);
+    box.scrollTop=box.scrollHeight;
+  },e=>showStatus("chatStatus",friendlyError(e),true));
 }
+
+$("messageForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const user=auth.currentUser;
+  const text=$("messageInput").value.trim();
+  if(!user||!text||sendBusy)return;
+  sendBusy=true;
+  $("sendBtn").disabled=true;
+  try{
+    await addDoc(collection(db,"messages"),{
+      uid:user.uid,
+      name:user.displayName||"مستخدم",
+      text,
+      createdAt:serverTimestamp()
+    });
+    $("messageInput").value="";
+    showStatus("chatStatus","");
+  }catch(e){showStatus("chatStatus",friendlyError(e),true)}
+  finally{sendBusy=false;$("sendBtn").disabled=false}
+});
+
+onAuthStateChanged(auth,user=>{
+  if(user)startChat(user);
+  else{
+    if(stopMessages)stopMessages();
+    stopMessages=null;
+    $("chatPanel").classList.add("hidden");
+    $("authPanel").classList.remove("hidden");
+  }
+});
+</script>
+</body>
