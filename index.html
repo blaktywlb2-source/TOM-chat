@@ -6,41 +6,103 @@
 <meta name="theme-color" content="#090711">
 <title>TOM chat</title>
 <style>
-:root{--bg:#090711;--panel:#151020;--purple:#9b5cff;--border:#302342;--text:#f8f4ff;--muted:#aaa0bd}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at top,#21103c,var(--bg) 55%);color:var(--text);font-family:system-ui,Arial,sans-serif;min-height:100vh}
-button,input{font:inherit}
-button{cursor:pointer}
-header{display:flex;align-items:center;gap:12px;padding:15px 18px;background:#0b0815;border-bottom:1px solid var(--border)}
-.logo{width:48px;height:48px;display:grid;place-items:center;border:1px solid #863bff;border-radius:15px;background:linear-gradient(145deg,#261044,#100b1f);color:#d8b5ff;font-weight:900;font-size:28px;box-shadow:0 0 22px #862bff30}
-.brand{font-size:23px;font-weight:900}.brand span{color:#b77aff}
-.tagline,.muted{color:var(--muted);font-size:13px;line-height:1.8}
-main{max-width:720px;margin:25px auto;padding:0 14px}
-.panel{background:#151020ed;border:1px solid var(--border);border-radius:22px;padding:22px;box-shadow:0 15px 50px #0003}
-h2{margin:0 0 7px;font-size:23px}
-.field{margin-top:15px}
-label{display:block;margin-bottom:7px;font-size:14px}
-input{width:100%;padding:13px;border:1px solid var(--border);border-radius:12px;background:#0c0914;color:white;outline:none}
-input:focus{border-color:var(--purple)}
-.btn{padding:12px 16px;border:0;border-radius:12px;background:linear-gradient(110deg,#873cff,#6122d0);color:white;font-weight:750}
-.btn:disabled{opacity:.6}
-.wide{width:100%;margin-top:18px}
-.secondary{background:#292035;border:1px solid #40304f}
-.link{background:none;border:0;color:#c9a8ff;padding:12px 0}
-.hidden{display:none!important}
-.notice{font-size:13px;line-height:1.8;color:#d1b6ff;margin-top:12px;overflow-wrap:anywhere}
-.error{color:#fda4af}
-.chat-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}
-#messages{height:52vh;min-height:260px;overflow-y:auto;background:#0c0914;border:1px solid var(--border);border-radius:15px;padding:12px;display:flex;flex-direction:column;gap:10px}
-.msg{max-width:90%;align-self:flex-start;background:#272039;border:1px solid #403051;padding:10px 13px;border-radius:14px;overflow-wrap:anywhere}
-.msg.mine{align-self:flex-end;background:#50218a}
-.msg-name{font-size:12px;color:#d9baff;margin-bottom:5px}
-.msg-body{white-space:pre-wrap;line-height:1.7}
-.msg-time{font-size:10px;color:#d3c3e9;margin-top:5px}
-.composer{display:flex;gap:9px;margin-top:12px}
-.composer input{flex:1;min-width:0}
-.footer{text-align:center;color:#766b87;font-size:12px;margin:20px}
-@media(max-width:460px){.panel{padding:16px}.brand{font-size:21px}}
+:root {
+  --bg:#090711;
+  --panel:#151020;
+  --purple:#9b5cff;
+  --border:#302342;
+  --text:#f8f4ff;
+  --muted:#aaa0bd;
+}
+* { box-sizing:border-box }
+body {
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  background:radial-gradient(ellipse at top,#21103c,var(--bg) 55%);
+  font-family:system-ui,Arial,sans-serif;
+}
+button,input { font:inherit }
+button { cursor:pointer }
+button:disabled { opacity:.55; cursor:wait }
+header {
+  display:flex; align-items:center; gap:12px;
+  padding:15px 18px; background:#0b0815;
+  border-bottom:1px solid var(--border);
+}
+.logo {
+  width:48px;height:48px;display:grid;place-items:center;
+  border:1px solid #863bff;border-radius:15px;
+  background:linear-gradient(145deg,#261044,#100b1f);
+  color:#d8b5ff;font-size:28px;font-weight:900;
+}
+.brand { font-size:23px;font-weight:900 }
+.brand span { color:#b77aff }
+.muted,.tagline { color:var(--muted);font-size:13px;line-height:1.8 }
+main { max-width:900px;margin:25px auto;padding:0 14px }
+.panel {
+  background:#151020ed;border:1px solid var(--border);
+  border-radius:22px;padding:22px;
+  box-shadow:0 15px 50px #0003;
+}
+h2 { margin:0 0 8px;font-size:23px }
+h3 { margin:0 0 12px;font-size:17px }
+.field { margin-top:15px }
+label { display:block;margin-bottom:7px;font-size:14px }
+input {
+  width:100%;padding:13px;border:1px solid var(--border);
+  border-radius:12px;background:#0c0914;color:white;outline:none;
+}
+input:focus { border-color:var(--purple) }
+.btn {
+  padding:11px 15px;border:0;border-radius:12px;
+  background:linear-gradient(110deg,#873cff,#6122d0);
+  color:white;font-weight:750;
+}
+.secondary { background:#292035;border:1px solid #40304f }
+.wide { width:100%;margin-top:18px }
+.link { background:none;border:0;color:#c9a8ff;padding:10px 0 }
+.hidden { display:none!important }
+.notice { font-size:13px;line-height:1.8;color:#d1b6ff;margin-top:12px;overflow-wrap:anywhere }
+.error { color:#fda4af }
+.layout { display:grid;grid-template-columns:280px 1fr;gap:14px }
+.stack { display:flex;flex-direction:column;gap:10px }
+.row { display:flex;gap:8px;align-items:center }
+.row input { min-width:0;flex:1 }
+.tabs { display:flex;gap:8px;flex-wrap:wrap;margin:15px 0 }
+.tab { flex:1;min-width:90px }
+.item {
+  padding:12px;border:1px solid var(--border);border-radius:13px;
+  background:#100c19;display:flex;align-items:center;gap:9px;
+}
+.item-main { min-width:0;flex:1;overflow-wrap:anywhere }
+.item-name { font-weight:750 }
+.item-actions { display:flex;gap:5px;flex-wrap:wrap;margin-top:7px }
+.small { padding:7px 9px;font-size:12px }
+#messages {
+  height:48vh;min-height:250px;overflow-y:auto;
+  background:#0c0914;border:1px solid var(--border);
+  border-radius:15px;padding:12px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.msg {
+  max-width:90%;align-self:flex-start;background:#272039;
+  border:1px solid #403051;padding:10px 13px;border-radius:14px;
+  overflow-wrap:anywhere;
+}
+.msg.mine { align-self:flex-end;background:#50218a }
+.msg-name { font-size:12px;color:#d9baff;margin-bottom:5px }
+.msg-body { white-space:pre-wrap;line-height:1.7 }
+.msg-time { font-size:10px;color:#d3c3e9;margin-top:5px }
+.composer { display:flex;gap:9px;margin-top:12px }
+.composer input { flex:1;min-width:0 }
+.footer { text-align:center;color:#766b87;font-size:12px;margin:20px }
+@media(max-width:650px) {
+  .layout { grid-template-columns:1fr }
+  .panel { padding:16px }
+  .brand { font-size:21px }
+  #messages { height:42vh }
+}
 </style>
 </head>
 <body>
@@ -48,20 +110,19 @@ input:focus{border-color:var(--purple)}
   <div class="logo">T</div>
   <div>
     <div class="brand">TOM <span>chat</span></div>
-    <div class="tagline"></div>
+    <div class="tagline">دردشتك، عالمك 💜</div>
   </div>
 </header>
 
 <main>
 <section id="authPanel" class="panel">
   <h2 id="authTitle">أهلاً بك في TOM chat</h2>
-  <p id="authSubtitle" class="muted">أنشئ حسابك وابدأ التواصل.</p>
-
+  <p class="muted" id="authSubtitle">أنشئ حسابك وابدأ التواصل.</p>
   <form id="authForm">
     <div class="field" id="nameField">
-      <label for="displayName">اسم المستخدم</label>
-      <input id="displayName" maxlength="30" autocomplete="nickname"
-        placeholder="مثلاً: tom_user">
+      <label for="displayName">اسم المستخدم (إنجليزي)</label>
+      <input id="displayName" maxlength="20" autocomplete="nickname"
+        placeholder="tom_user">
     </div>
     <div class="field">
       <label for="email">البريد الإلكتروني</label>
@@ -75,43 +136,83 @@ input:focus{border-color:var(--purple)}
     </div>
     <button id="authSubmit" class="btn wide" type="submit">إنشاء حساب</button>
   </form>
-
   <button id="forgotBtn" class="link" type="button">نسيت كلمة المرور؟</button>
   <br>
   <button id="switchMode" class="link" type="button">عندك حساب؟ سجّل الدخول</button>
   <div id="authStatus" class="notice" role="status"></div>
 </section>
 
-<section id="chatPanel" class="panel hidden">
-  <div class="chat-head">
+<section id="appPanel" class="panel hidden">
+  <div class="row" style="justify-content:space-between">
     <div>
-      <h2>غرفة الدردشة 💬</h2>
+      <h2>TOM chat 💜</h2>
       <div class="muted">مرحباً <span id="welcomeName"></span></div>
     </div>
     <button id="logoutBtn" class="btn secondary" type="button">خروج</button>
   </div>
-  <div id="messages" aria-live="polite">
-    <div class="muted">جارٍ تحميل الرسائل...</div>
+
+  <div class="tabs">
+    <button class="btn tab" data-view="searchView">البحث</button>
+    <button class="btn secondary tab" data-view="requestsView">الطلبات</button>
+    <button class="btn secondary tab" data-view="friendsView">الأصدقاء</button>
+    <button class="btn secondary tab" data-view="chatView">المحادثة</button>
   </div>
-  <form id="messageForm" class="composer">
-    <input id="messageInput" maxlength="2000" required autocomplete="off"
-      placeholder="اكتب رسالتك...">
-    <button id="sendBtn" class="btn" type="submit">إرسال</button>
-  </form>
-  <div id="chatStatus" class="notice" role="status"></div>
+
+  <section id="searchView">
+    <h3>ابحث عن صديق</h3>
+    <p class="muted">اكتب اسم المستخدم كاملاً للبحث عنه.</p>
+    <form id="searchForm" class="row">
+      <input id="searchInput" required maxlength="20"
+        placeholder="مثلاً tom_user">
+      <button class="btn" type="submit">بحث</button>
+    </form>
+    <div id="searchResults" class="stack" style="margin-top:12px"></div>
+  </section>
+
+  <section id="requestsView" class="hidden">
+    <h3>طلبات الصداقة الواردة</h3>
+    <div id="incomingRequests" class="stack"></div>
+    <h3 style="margin-top:22px">الطلبات المرسلة</h3>
+    <div id="outgoingRequests" class="stack"></div>
+  </section>
+
+  <section id="friendsView" class="hidden">
+    <h3>أصدقائي</h3>
+    <div id="friendsList" class="stack"></div>
+  </section>
+
+  <section id="chatView" class="hidden">
+    <div class="chat-head">
+      <div>
+        <h3 id="chatTitle">اختر صديقاً</h3>
+        <div class="muted" id="chatSubtitle">المحادثات الخاصة</div>
+      </div>
+    </div>
+    <div id="messages" aria-live="polite">
+      <div class="muted">اختر صديقاً من القائمة لبدء المحادثة.</div>
+    </div>
+    <form id="messageForm" class="composer">
+      <input id="messageInput" maxlength="2000" required autocomplete="off"
+        placeholder="اكتب رسالتك..." disabled>
+      <button id="sendBtn" class="btn" type="submit" disabled>إرسال</button>
+    </form>
+  </section>
+  <div id="appStatus" class="notice" role="status"></div>
 </section>
+
 <div class="footer">TOM chat © 2026</div>
 </main>
 
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
 import {
-  getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,
-  sendPasswordResetEmail,onAuthStateChanged,updateProfile,signOut
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  sendPasswordResetEmail, onAuthStateChanged, updateProfile, signOut
 } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
 import {
-  getFirestore,collection,addDoc,query,orderBy,limit,
-  onSnapshot,serverTimestamp
+  getFirestore, doc, getDoc, setDoc, updateDoc, addDoc,
+  collection, query, where, getDocs, onSnapshot, orderBy, limit,
+  serverTimestamp, runTransaction
 } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -124,154 +225,421 @@ const firebaseConfig = {
   measurementId: "G-C3RTB7NC07"
 };
 
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
-const $=id=>document.getElementById(id);
-let isSignup=true,authBusy=false,sendBusy=false,stopMessages=null;
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const $ = id => document.getElementById(id);
 
-function showStatus(id,text,isError=false){
-  $(id).textContent=text;
-  $(id).classList.toggle("error",isError);
+let isSignup = true;
+let busy = false;
+let currentUser = null;
+let activeFriend = null;
+let stopFriends = null;
+let stopIncoming = null;
+let stopOutgoing = null;
+let stopMessages = null;
+let currentChatId = null;
+
+function status(id, message, error = false) {
+  $(id).textContent = message;
+  $(id).classList.toggle("error", error);
 }
-function friendlyError(e){
-  const map={
-    "auth/email-already-in-use":"هذا البريد مسجل بالفعل. سجّل الدخول.",
+function err(e) {
+  const messages = {
+    "auth/email-already-in-use":"هذا البريد مسجل بالفعل.",
     "auth/invalid-email":"البريد الإلكتروني غير صحيح.",
-    "auth/weak-password":"كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
+    "auth/weak-password":"كلمة المرور قصيرة جداً.",
     "auth/invalid-credential":"البريد أو كلمة المرور غير صحيحة.",
-    "auth/user-not-found":"لم نجد حساباً بهذه البيانات.",
-    "auth/too-many-requests":"محاولات كثيرة. انتظر قليلاً ثم حاول.",
+    "auth/too-many-requests":"محاولات كثيرة؛ حاول لاحقاً.",
     "auth/network-request-failed":"تحقق من اتصال الإنترنت.",
-    "auth/operation-not-allowed":"فعّل Email/Password من إعدادات Firebase Authentication.",
-    "permission-denied":"تعذر الوصول إلى قاعدة البيانات. تحقق من إعداداتها وقواعد الأمان."
+    "permission-denied":"رفضت قواعد الأمان العملية. تأكد من نشر القواعد الصحيحة.",
+    "failed-precondition":"قاعدة البيانات تحتاج إلى إعداد إضافي."
   };
-  return map[e.code]||e.message||"حدث خطأ. حاول مرة أخرى.";
+  return messages[e.code] || e.message || "حدث خطأ.";
+}
+function showView(id) {
+  ["searchView","requestsView","friendsView","chatView"].forEach(v =>
+    $(v).classList.toggle("hidden",v !== id)
+  );
+  document.querySelectorAll("[data-view]").forEach(b => {
+    const selected = b.dataset.view === id;
+    b.classList.toggle("secondary",!selected);
+  });
+}
+function makeItem(name, detail = "") {
+  const div = document.createElement("div");
+  div.className = "item";
+  const main = document.createElement("div");
+  main.className = "item-main";
+  const title = document.createElement("div");
+  title.className = "item-name";
+  title.textContent = name;
+  main.append(title);
+  if (detail) {
+    const sub = document.createElement("div");
+    sub.className = "muted";
+    sub.textContent = detail;
+    main.append(sub);
+  }
+  div.append(main);
+  return {div,main};
+}
+function addButton(parent, label, action, secondary = false) {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "btn small" + (secondary ? " secondary" : "");
+  b.textContent = label;
+  b.addEventListener("click", action);
+  parent.append(b);
+  return b;
+}
+function pairId(a,b) {
+  return [a,b].sort().join("_");
+}
+function stopListeners() {
+  [stopFriends,stopIncoming,stopOutgoing,stopMessages].forEach(fn => {
+    if (fn) fn();
+  });
+  stopFriends = stopIncoming = stopOutgoing = stopMessages = null;
+  currentChatId = null;
+  activeFriend = null;
+}
+function clearLists() {
+  ["searchResults","incomingRequests","outgoingRequests","friendsList"].forEach(id =>
+    $(id).replaceChildren()
+  );
+}
+function startApp(user) {
+  stopListeners();
+  currentUser = user;
+  $("authPanel").classList.add("hidden");
+  $("appPanel").classList.remove("hidden");
+  $("welcomeName").textContent = user.displayName || "مستخدم";
+  $("messageInput").disabled = true;
+  $("sendBtn").disabled = true;
+  $("chatTitle").textContent = "اختر صديقاً";
+  $("messages").replaceChildren();
+  clearLists();
+  status("appStatus","");
+
+  // Public profile contains only UID and username; never store email here.
+  const profileRef = doc(db,"users",user.uid);
+  getDoc(profileRef).then(async snap => {
+    if (!snap.exists()) {
+      const username = (user.displayName || "user").toLowerCase();
+      await setDoc(profileRef,{
+        uid:user.uid,
+        username,
+        usernameLower:username,
+        createdAt:serverTimestamp()
+      });
+    }
+  }).catch(e => status("appStatus",err(e),true));
+
+  stopFriends = onSnapshot(
+    query(collection(db,"friendships"),where("members","array-contains",user.uid)),
+    snap => {
+      const list = $("friendsList");
+      list.replaceChildren();
+      if (snap.empty) {
+        list.textContent = "ما عندك أصدقاء بعد. ابحث عن مستخدم لإرسال طلب.";
+        return;
+      }
+      snap.forEach(d => {
+        const data = d.data();
+        const otherUid = (data.members || []).find(id => id !== user.uid);
+        if (!otherUid) return;
+        getDoc(doc(db,"users",otherUid)).then(p => {
+          if (!p.exists()) return;
+          const profile = p.data();
+          const item = makeItem("@"+(profile.username || "user"));
+          addButton(item.div,"مراسلة",() => openChat(otherUid,profile.username || "صديق"));
+          list.append(item.div);
+        }).catch(e => status("appStatus",err(e),true));
+      });
+    },
+    e => status("appStatus",err(e),true)
+  );
+
+  stopIncoming = onSnapshot(
+    query(collection(db,"friendRequests"),where("toUid","==",user.uid),where("status","==","pending")),
+    snap => {
+      const list = $("incomingRequests");
+      list.replaceChildren();
+      if (snap.empty) list.textContent = "لا توجد طلبات واردة.";
+      snap.forEach(d => {
+        const r = d.data();
+        getDoc(doc(db,"users",r.fromUid)).then(p => {
+          if (!p.exists()) return;
+          const profile = p.data();
+          const item = makeItem("@"+profile.username);
+          addButton(item.div,"قبول",() => acceptRequest(d.id,r));
+          addButton(item.div,"رفض",() => declineRequest(d.id),true);
+          list.append(item.div);
+        }).catch(e => status("appStatus",err(e),true));
+      });
+    },
+    e => status("appStatus",err(e),true)
+  );
+
+  stopOutgoing = onSnapshot(
+    query(collection(db,"friendRequests"),where("fromUid","==",user.uid),where("status","==","pending")),
+    snap => {
+      const list = $("outgoingRequests");
+      list.replaceChildren();
+      if (snap.empty) list.textContent = "لا توجد طلبات مرسلة معلقة.";
+      snap.forEach(d => {
+        const item = makeItem("طلب صداقة","بانتظار الرد");
+        list.append(item.div);
+      });
+    },
+    e => status("appStatus",err(e),true)
+  );
 }
 
-$("switchMode").addEventListener("click",()=>{
-  isSignup=!isSignup;
-  $("authTitle").textContent=isSignup?"أهلاً بك في TOM chat":"مرحباً بعودتك";
-  $("authSubtitle").textContent=isSignup?"أنشئ حسابك وابدأ التواصل.":"سجّل الدخول للمتابعة.";
+$("switchMode").addEventListener("click",() => {
+  isSignup = !isSignup;
+  $("authTitle").textContent = isSignup ? "أهلاً بك في TOM chat" : "مرحباً بعودتك";
+  $("authSubtitle").textContent = isSignup ? "أنشئ حسابك وابدأ التواصل." : "سجّل الدخول للمتابعة.";
   $("nameField").classList.toggle("hidden",!isSignup);
-  $("authSubmit").textContent=isSignup?"إنشاء حساب":"تسجيل الدخول";
-  $("switchMode").textContent=isSignup?"عندك حساب؟ سجّل الدخول":"ما عندك حساب؟ أنشئ حساباً";
-  showStatus("authStatus","");
+  $("authSubmit").textContent = isSignup ? "إنشاء حساب" : "تسجيل الدخول";
+  $("switchMode").textContent = isSignup ? "عندك حساب؟ سجّل الدخول" : "ما عندك حساب؟ أنشئ حساباً";
+  status("authStatus","");
 });
 
-$("forgotBtn").addEventListener("click",async()=>{
-  const email=$("email").value.trim();
-  if(!email){
-    showStatus("authStatus","اكتب بريدك الإلكتروني أولاً، ثم اضغط «نسيت كلمة المرور؟».",true);
-    $("email").focus();
+$("forgotBtn").addEventListener("click",async() => {
+  const email = $("email").value.trim();
+  if (!email) {
+    status("authStatus","اكتب بريدك الإلكتروني أولاً.",true);
     return;
   }
-  $("forgotBtn").disabled=true;
-  try{
+  try {
     await sendPasswordResetEmail(auth,email);
-    showStatus("authStatus","إذا كان البريد مسجلاً، فستصلك رسالة لإعادة تعيين كلمة المرور. افحص البريد الوارد والرسائل غير المرغوب فيها.");
-  }catch(e){
-    showStatus("authStatus",friendlyError(e),true);
-  }finally{
-    $("forgotBtn").disabled=false;
-  }
+    status("authStatus","إذا كان البريد مسجلاً، ستصلك رسالة لإعادة التعيين.");
+  } catch(e) { status("authStatus",err(e),true); }
 });
 
-$("authForm").addEventListener("submit",async e=>{
+$("authForm").addEventListener("submit",async e => {
   e.preventDefault();
-  if(authBusy)return;
-  authBusy=true;
-  $("authSubmit").disabled=true;
-  showStatus("authStatus","جارٍ تنفيذ الطلب...");
-  try{
-    const email=$("email").value.trim();
-    const password=$("password").value;
-    if(isSignup){
-      const name=$("displayName").value.trim();
-      if(!/^[a-zA-Z0-9_]{3,20}$/.test(name)){
-        throw new Error("اسم المستخدم يجب أن يكون من 3 إلى 20 حرفاً إنجليزياً أو رقماً أو _.");
+  if (busy) return;
+  busy = true;
+  $("authSubmit").disabled = true;
+  try {
+    const email = $("email").value.trim();
+    const password = $("password").value;
+    if (isSignup) {
+      const username = $("displayName").value.trim().toLowerCase();
+      if (!/^[a-z0-9_]{3,20}$/.test(username)) {
+        throw new Error("اسم المستخدم يجب أن يكون 3–20 حرفاً إنجليزياً أو رقماً أو _.");
       }
-      const result=await createUserWithEmailAndPassword(auth,email,password);
-      await updateProfile(result.user,{displayName:name});
-    }else{
+
+      // Check current profile names; a unique username reservation should
+      // ultimately be enforced with a dedicated transaction and security rules.
+      const existing = await getDocs(query(
+        collection(db,"users"),where("usernameLower","==",username),limit(1)
+      ));
+      if (!existing.empty) throw new Error("اسم المستخدم مستخدم. اختر اسماً آخر.");
+
+      const result = await createUserWithEmailAndPassword(auth,email,password);
+      await updateProfile(result.user,{displayName:username});
+      await setDoc(doc(db,"users",result.user.uid),{
+        uid:result.user.uid,
+        username,
+        usernameLower:username,
+        createdAt:serverTimestamp()
+      });
+    } else {
       await signInWithEmailAndPassword(auth,email,password);
     }
-  }catch(e){showStatus("authStatus",friendlyError(e),true)}
-  finally{authBusy=false;$("authSubmit").disabled=false}
+    status("authStatus","");
+  } catch(e) { status("authStatus",err(e),true); }
+  finally { busy = false; $("authSubmit").disabled = false; }
 });
 
-$("logoutBtn").addEventListener("click",async()=>{
-  try{if(stopMessages)stopMessages();stopMessages=null;await signOut(auth)}
-  catch(e){showStatus("chatStatus",friendlyError(e),true)}
+$("logoutBtn").addEventListener("click",async() => {
+  stopListeners();
+  try { await signOut(auth); }
+  catch(e) { status("appStatus",err(e),true); }
 });
 
-function startChat(user){
-  $("authPanel").classList.add("hidden");
-  $("chatPanel").classList.remove("hidden");
-  $("welcomeName").textContent=user.displayName||"صديقنا";
-  showStatus("chatStatus","");
-  const box=$("messages");
-  box.replaceChildren();
-  if(stopMessages)stopMessages();
+document.querySelectorAll("[data-view]").forEach(b =>
+  b.addEventListener("click",() => showView(b.dataset.view))
+);
 
-  const q=query(collection(db,"messages"),orderBy("createdAt","asc"),limit(100));
-  stopMessages=onSnapshot(q,snapshot=>{
-    box.replaceChildren();
-    if(snapshot.empty){
-      const empty=document.createElement("div");
-      empty.className="muted";
-      empty.textContent="لا توجد رسائل بعد. ابدأ المحادثة!";
-      box.append(empty);
+$("searchForm").addEventListener("submit",async e => {
+  e.preventDefault();
+  if (!currentUser) return;
+  const username = $("searchInput").value.trim().toLowerCase();
+  const results = $("searchResults");
+  results.replaceChildren();
+  try {
+    const snap = await getDocs(query(
+      collection(db,"users"),
+      where("usernameLower","==",username),
+      limit(10)
+    ));
+    if (snap.empty) {
+      results.textContent = "لم نجد مستخدماً بهذا الاسم.";
       return;
     }
-    snapshot.forEach(doc=>{
-      const m=doc.data();
-      const item=document.createElement("div");
-      item.className="msg"+(m.uid===user.uid?" mine":"");
-      const name=document.createElement("div");
-      name.className="msg-name";
-      name.textContent=m.name||"مستخدم";
-      const body=document.createElement("div");
-      body.className="msg-body";
-      body.textContent=m.text||"";
-      const time=document.createElement("div");
-      time.className="msg-time";
-      time.textContent=m.createdAt?.toDate?m.createdAt.toDate().toLocaleString("ar"):"الآن";
-      item.append(name,body,time);
-      box.append(item);
+    snap.forEach(d => {
+      const p = d.data();
+      if (p.uid === currentUser.uid) {
+        const own = makeItem("@"+p.username,"هذا حسابك");
+        results.append(own.div);
+        return;
+      }
+      const item = makeItem("@"+p.username);
+      addButton(item.div,"إرسال طلب",() => sendRequest(p.uid));
+      results.append(item.div);
     });
-    box.scrollTop=box.scrollHeight;
-  },e=>showStatus("chatStatus",friendlyError(e),true));
+  } catch(e) { status("appStatus",err(e),true); }
+});
+
+async function sendRequest(toUid) {
+  if (!currentUser || toUid === currentUser.uid) return;
+  try {
+    const friendshipId = pairId(currentUser.uid,toUid);
+    const friendship = await getDoc(doc(db,"friendships",friendshipId));
+    if (friendship.exists()) {
+      status("appStatus","أنتم أصدقاء بالفعل.");
+      return;
+    }
+    const existing = await getDocs(query(
+      collection(db,"friendRequests"),
+      where("fromUid","==",currentUser.uid),
+      where("toUid","==",toUid),
+      where("status","==","pending"),
+      limit(1)
+    ));
+    if (!existing.empty) {
+      status("appStatus","أرسلت طلباً لهذا المستخدم من قبل.");
+      return;
+    }
+    await addDoc(collection(db,"friendRequests"),{
+      fromUid:currentUser.uid,
+      toUid,
+      status:"pending",
+      createdAt:serverTimestamp()
+    });
+    status("appStatus","تم إرسال طلب الصداقة.");
+  } catch(e) { status("appStatus",err(e),true); }
 }
 
-$("messageForm").addEventListener("submit",async e=>{
+async function acceptRequest(requestId,requestData) {
+  if (!currentUser || requestData.toUid !== currentUser.uid) return;
+  try {
+    const id = pairId(requestData.fromUid,requestData.toUid);
+    await runTransaction(db,async tx => {
+      const reqRef = doc(db,"friendRequests",requestId);
+      const reqSnap = await tx.get(reqRef);
+      if (!reqSnap.exists() || reqSnap.data().status !== "pending" ||
+          reqSnap.data().toUid !== currentUser.uid) {
+        throw new Error("الطلب لم يعد متاحاً.");
+      }
+      const friendshipRef = doc(db,"friendships",id);
+      tx.set(friendshipRef,{
+        members:[requestData.fromUid,requestData.toUid].sort(),
+        createdAt:serverTimestamp()
+      });
+      tx.update(reqRef,{status:"accepted",respondedAt:serverTimestamp()});
+    });
+    status("appStatus","تم قبول طلب الصداقة.");
+  } catch(e) { status("appStatus",err(e),true); }
+}
+
+async function declineRequest(requestId) {
+  try {
+    await updateDoc(doc(db,"friendRequests",requestId),{
+      status:"declined",
+      respondedAt:serverTimestamp()
+    });
+    status("appStatus","تم رفض الطلب.");
+  } catch(e) { status("appStatus",err(e),true); }
+}
+
+async function openChat(friendUid,friendName) {
+  if (!currentUser || friendUid === currentUser.uid) return;
+  const id = pairId(currentUser.uid,friendUid);
+  try {
+    const friendship = await getDoc(doc(db,"friendships",id));
+    if (!friendship.exists() ||
+        !(friendship.data().members || []).includes(currentUser.uid) ||
+        !(friendship.data().members || []).includes(friendUid)) {
+      status("appStatus","المحادثة متاحة للأصدقاء المقبولين فقط.",true);
+      return;
+    }
+    if (stopMessages) stopMessages();
+    activeFriend = {uid:friendUid,name:friendName};
+    currentChatId = id;
+    $("chatTitle").textContent = "@"+friendName;
+    $("chatSubtitle").textContent = "محادثة خاصة";
+    $("messageInput").disabled = false;
+    $("sendBtn").disabled = false;
+    $("messages").replaceChildren();
+    showView("chatView");
+
+    const messagesQuery = query(
+      collection(db,"chats",id,"messages"),
+      orderBy("createdAt","asc"),
+      limit(100)
+    );
+    stopMessages = onSnapshot(messagesQuery,snap => {
+      const box = $("messages");
+      box.replaceChildren();
+      if (snap.empty) {
+        box.textContent = "لا توجد رسائل بعد. ابدأ المحادثة!";
+        return;
+      }
+      snap.forEach(d => {
+        const m = d.data();
+        const item = document.createElement("div");
+        item.className = "msg"+(m.uid === currentUser.uid ? " mine" : "");
+        const name = document.createElement("div");
+        name.className = "msg-name";
+        name.textContent = m.name || "مستخدم";
+        const body = document.createElement("div");
+        body.className = "msg-body";
+        body.textContent = m.text || "";
+        const time = document.createElement("div");
+        time.className = "msg-time";
+        time.textContent = m.createdAt?.toDate
+          ? m.createdAt.toDate().toLocaleString() : "الآن";
+        item.append(name,body,time);
+        box.append(item);
+      });
+      box.scrollTop = box.scrollHeight;
+    },e => status("appStatus",err(e),true));
+  } catch(e) { status("appStatus",err(e),true); }
+}
+
+$("messageForm").addEventListener("submit",async e => {
   e.preventDefault();
-  const user=auth.currentUser;
-  const text=$("messageInput").value.trim();
-  if(!user||!text||sendBusy)return;
-  sendBusy=true;
-  $("sendBtn").disabled=true;
-  try{
-    await addDoc(collection(db,"messages"),{
-      uid:user.uid,
-      name:user.displayName||"مستخدم",
+  const text = $("messageInput").value.trim();
+  if (!currentUser || !activeFriend || !currentChatId || !text) return;
+  $("sendBtn").disabled = true;
+  try {
+    await addDoc(collection(db,"chats",currentChatId,"messages"),{
+      uid:currentUser.uid,
+      name:currentUser.displayName || "مستخدم",
       text,
       createdAt:serverTimestamp()
     });
-    $("messageInput").value="";
-    showStatus("chatStatus","");
-  }catch(e){showStatus("chatStatus",friendlyError(e),true)}
-  finally{sendBusy=false;$("sendBtn").disabled=false}
+    $("messageInput").value = "";
+    status("appStatus","");
+  } catch(e) { status("appStatus",err(e),true); }
+  finally { $("sendBtn").disabled = false; }
 });
 
-onAuthStateChanged(auth,user=>{
-  if(user)startChat(user);
-  else{
-    if(stopMessages)stopMessages();
-    stopMessages=null;
-    $("chatPanel").classList.add("hidden");
+onAuthStateChanged(auth,user => {
+  if (user) startApp(user);
+  else {
+    stopListeners();
+    currentUser = null;
+    $("appPanel").classList.add("hidden");
     $("authPanel").classList.remove("hidden");
   }
 });
 </script>
 </body>
+</html>
