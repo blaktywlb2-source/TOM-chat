@@ -2,110 +2,50 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#090711">
 <title>TOM chat</title>
 <style>
-:root {
-  --bg:#090711; --panel:#151020; --purple:#9b5cff;
-  --border:#302342; --text:#f8f4ff; --muted:#aaa0bd;
-}
-* { box-sizing:border-box }
-body {
-  margin:0; min-height:100vh; color:var(--text);
-  background:radial-gradient(ellipse at top,#21103c,var(--bg) 55%);
-  font-family:system-ui,Arial,sans-serif;
-}
-button,input { font:inherit }
-button { cursor:pointer }
-button:disabled { opacity:.55; cursor:wait }
-header {
-  display:flex; align-items:center; gap:12px;
-  padding:15px 18px; background:#0b0815;
-  border-bottom:1px solid var(--border);
-}
-.logo {
-  width:48px;height:48px;display:grid;place-items:center;
-  border:1px solid #863bff;border-radius:15px;
-  background:linear-gradient(145deg,#261044,#100b1f);
-  color:#d8b5ff;font-size:28px;font-weight:900;
-}
-.brand { font-size:23px;font-weight:900 }
-.brand span { color:#b77aff }
-.muted,.tagline { color:var(--muted);font-size:13px;line-height:1.8 }
-main { max-width:900px;margin:25px auto;padding:0 14px }
-.panel {
-  background:#151020ed;border:1px solid var(--border);
-  border-radius:22px;padding:22px;box-shadow:0 15px 50px #0003;
-}
-h2 { margin:0 0 8px;font-size:23px }
-h3 { margin:0 0 12px;font-size:17px }
-.field { margin-top:15px }
-label { display:block;margin-bottom:7px;font-size:14px }
-input {
-  width:100%;padding:13px;border:1px solid var(--border);
-  border-radius:12px;background:#0c0914;color:white;outline:none;
-}
-input:focus { border-color:var(--purple) }
-.btn {
-  padding:11px 15px;border:0;border-radius:12px;
-  background:linear-gradient(110deg,#873cff,#6122d0);
-  color:white;font-weight:750;
-}
-.secondary { background:#292035;border:1px solid #40304f }
-.wide { width:100%;margin-top:18px }
-.link { background:none;border:0;color:#c9a8ff;padding:10px 0 }
-.hidden { display:none!important }
-.notice { font-size:13px;line-height:1.8;color:#d1b6ff;margin-top:12px;overflow-wrap:anywhere }
-.error { color:#fda4af }
-.stack { display:flex;flex-direction:column;gap:10px }
-.row { display:flex;gap:8px;align-items:center }
-.row input { min-width:0;flex:1 }
-.tabs { display:flex;gap:8px;flex-wrap:wrap;margin:15px 0 }
-.tab { flex:1;min-width:90px }
-.item {
-  padding:12px;border:1px solid var(--border);border-radius:13px;
-  background:#100c19;display:flex;align-items:center;gap:9px;
-}
-.item-main { min-width:0;flex:1;overflow-wrap:anywhere }
-.item-name { font-weight:750 }
-.item-actions { display:flex;gap:5px;flex-wrap:wrap }
-.small { padding:7px 9px;font-size:12px }
-#messages {
-  height:48vh;min-height:250px;overflow-y:auto;
-  background:#0c0914;border:1px solid var(--border);
-  border-radius:15px;padding:12px;
-  display:flex;flex-direction:column;gap:10px;
-}
-.msg {
-  max-width:90%;align-self:flex-start;background:#272039;
-  border:1px solid #403051;padding:10px 13px;border-radius:14px;
-  overflow-wrap:anywhere;
-}
-.msg.mine { align-self:flex-end;background:#50218a }
-.msg-name { font-size:12px;color:#d9baff;margin-bottom:5px }
-.msg-body { white-space:pre-wrap;line-height:1.7 }
-.msg-time { font-size:10px;color:#d3c3e9;margin-top:5px }
-.composer { display:flex;gap:9px;margin-top:12px }
-.composer input { flex:1;min-width:0 }
-.footer { text-align:center;color:#766b87;font-size:12px;margin:20px }
-@media(max-width:650px) {
-  main { margin:16px auto }
-  .panel { padding:16px }
-  .brand { font-size:21px }
-  #messages { height:42vh }
-}
+:root{--bg:#090711;--panel:#151020;--purple:#9b5cff;--border:#302342;--text:#f8f4ff;--muted:#aaa0bd}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--text);background:radial-gradient(ellipse at top,#21103c,var(--bg) 55%);font-family:system-ui,Arial,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.55;cursor:wait}
+header{display:flex;align-items:center;gap:12px;padding:15px 18px;background:#0b0815;border-bottom:1px solid var(--border)}
+.logo{width:48px;height:48px;display:grid;place-items:center;border:1px solid #863bff;border-radius:15px;background:#261044;color:#d8b5ff;font-size:28px;font-weight:900}
+.brand{font-size:23px;font-weight:900}.brand span{color:#b77aff}
+.muted,.tagline{color:var(--muted);font-size:13px;line-height:1.8}
+main{max-width:900px;margin:25px auto;padding:0 14px}
+.panel{background:#151020ed;border:1px solid var(--border);border-radius:22px;padding:22px;box-shadow:0 15px 50px #0003}
+h2{margin:0 0 8px;font-size:23px}h3{margin:0 0 12px;font-size:17px}
+.field{margin-top:15px}label{display:block;margin-bottom:7px;font-size:14px}
+input{width:100%;padding:13px;border:1px solid var(--border);border-radius:12px;background:#0c0914;color:white;outline:none}
+input:focus{border-color:var(--purple)}
+.btn{padding:11px 15px;border:0;border-radius:12px;background:linear-gradient(110deg,#873cff,#6122d0);color:white;font-weight:750}
+.secondary{background:#292035;border:1px solid #40304f}.wide{width:100%;margin-top:18px}
+.link{background:none;border:0;color:#c9a8ff;padding:10px 0}
+.hidden{display:none!important}.notice{font-size:13px;line-height:1.8;color:#d1b6ff;margin-top:12px;overflow-wrap:anywhere}
+.error{color:#fda4af}.stack{display:flex;flex-direction:column;gap:10px}
+.row{display:flex;gap:8px;align-items:center}.row input{min-width:0;flex:1}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.tab{flex:1;min-width:90px}
+.item{padding:12px;border:1px solid var(--border);border-radius:13px;background:#100c19;display:flex;align-items:center;gap:9px}
+.item-main{min-width:0;flex:1;overflow-wrap:anywhere}.item-name{font-weight:750}
+.small{padding:7px 9px;font-size:12px}
+#messages{height:48vh;min-height:250px;overflow-y:auto;background:#0c0914;border:1px solid var(--border);border-radius:15px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:90%;align-self:flex-start;background:#272039;border:1px solid #403051;padding:10px 13px;border-radius:14px;overflow-wrap:anywhere}
+.msg.mine{align-self:flex-end;background:#50218a}.msg-name{font-size:12px;color:#d9baff;margin-bottom:5px}
+.msg-body{white-space:pre-wrap;line-height:1.7}.msg-time{font-size:10px;color:#d3c3e9;margin-top:5px}
+.composer{display:flex;gap:9px;margin-top:12px}.composer input{flex:1;min-width:0}
+.footer{text-align:center;color:#766b87;font-size:12px;margin:20px}
+@media(max-width:650px){main{margin:16px auto}.panel{padding:16px}.brand{font-size:21px}#messages{height:42vh}}
 </style>
 </head>
 <body>
 <header>
   <div class="logo">T</div>
-  <div>
-    <div class="brand">TOM <span>chat</span></div>
-    <div class="tagline">دردشتك، عالمك 💜</div>
-  </div>
+  <div><div class="brand">TOM <span>chat</span></div><div class="tagline">دردشتك، عالمك 💜</div></div>
 </header>
-
 <main>
 <section id="authPanel" class="panel">
   <h2 id="authTitle">أهلاً بك في TOM chat</h2>
@@ -113,76 +53,52 @@ input:focus { border-color:var(--purple) }
   <form id="authForm">
     <div class="field" id="nameField">
       <label for="displayName">اسم المستخدم (إنجليزي)</label>
-      <input id="displayName" maxlength="20" autocomplete="nickname"
-        placeholder="tom_user">
+      <input id="displayName" maxlength="20" autocomplete="nickname" placeholder="tom_user">
     </div>
     <div class="field">
       <label for="email">البريد الإلكتروني</label>
-      <input id="email" type="email" required autocomplete="email"
-        placeholder="name@example.com">
+      <input id="email" type="email" required autocomplete="email" placeholder="name@example.com">
     </div>
     <div class="field">
       <label for="password">كلمة المرور</label>
-      <input id="password" type="password" required minlength="6"
-        autocomplete="current-password" placeholder="6 أحرف على الأقل">
+      <input id="password" type="password" required minlength="6" autocomplete="current-password" placeholder="6 أحرف على الأقل">
     </div>
     <button id="authSubmit" class="btn wide" type="submit">إنشاء حساب</button>
   </form>
-  <button id="forgotBtn" class="link" type="button">نسيت كلمة المرور؟</button>
-  <br>
+  <button id="forgotBtn" class="link" type="button">نسيت كلمة المرور؟</button><br>
   <button id="switchMode" class="link" type="button">عندك حساب؟ سجّل الدخول</button>
   <div id="authStatus" class="notice" role="status"></div>
 </section>
 
 <section id="appPanel" class="panel hidden">
   <div class="row" style="justify-content:space-between">
-    <div>
-      <h2>TOM chat 💜</h2>
-      <div class="muted">مرحباً <span id="welcomeName"></span></div>
-    </div>
+    <div><h2>TOM chat 💜</h2><div class="muted">مرحباً <span id="welcomeName"></span></div></div>
     <button id="logoutBtn" class="btn secondary" type="button">خروج</button>
   </div>
-
   <div class="tabs">
     <button class="btn tab" data-view="searchView">البحث</button>
     <button class="btn secondary tab" data-view="requestsView">الطلبات</button>
     <button class="btn secondary tab" data-view="friendsView">الأصدقاء</button>
     <button class="btn secondary tab" data-view="chatView">المحادثة</button>
   </div>
-
   <section id="searchView">
-    <h3>ابحث عن صديق</h3>
-    <p class="muted">اكتب اسم المستخدم كاملاً للبحث عنه.</p>
+    <h3>ابحث عن صديق</h3><p class="muted">اكتب اسم المستخدم كاملاً.</p>
     <form id="searchForm" class="row">
       <input id="searchInput" required maxlength="20" placeholder="مثلاً tom_user">
       <button class="btn" type="submit">بحث</button>
     </form>
     <div id="searchResults" class="stack" style="margin-top:12px"></div>
   </section>
-
   <section id="requestsView" class="hidden">
-    <h3>طلبات الصداقة الواردة</h3>
-    <div id="incomingRequests" class="stack"></div>
-    <h3 style="margin-top:22px">الطلبات المرسلة</h3>
-    <div id="outgoingRequests" class="stack"></div>
+    <h3>طلبات الصداقة الواردة</h3><div id="incomingRequests" class="stack"></div>
+    <h3 style="margin-top:22px">الطلبات المرسلة</h3><div id="outgoingRequests" class="stack"></div>
   </section>
-
-  <section id="friendsView" class="hidden">
-    <h3>أصدقائي</h3>
-    <div id="friendsList" class="stack"></div>
-  </section>
-
+  <section id="friendsView" class="hidden"><h3>أصدقائي</h3><div id="friendsList" class="stack"></div></section>
   <section id="chatView" class="hidden">
-    <div>
-      <h3 id="chatTitle">اختر صديقاً</h3>
-      <div class="muted" id="chatSubtitle">المحادثات الخاصة</div>
-    </div>
-    <div id="messages" aria-live="polite">
-      <div class="muted">اختر صديقاً من القائمة لبدء المحادثة.</div>
-    </div>
+    <h3 id="chatTitle">اختر صديقاً</h3><div class="muted" id="chatSubtitle">المحادثات الخاصة</div>
+    <div id="messages" aria-live="polite"><div class="muted">اختر صديقاً لبدء المحادثة.</div></div>
     <form id="messageForm" class="composer">
-      <input id="messageInput" maxlength="2000" required autocomplete="off"
-        placeholder="اكتب رسالتك..." disabled>
+      <input id="messageInput" maxlength="2000" required autocomplete="off" placeholder="اكتب رسالتك..." disabled>
       <button id="sendBtn" class="btn" type="submit" disabled>إرسال</button>
     </form>
   </section>
@@ -192,553 +108,365 @@ input:focus { border-color:var(--purple) }
 </main>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
-  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  sendPasswordResetEmail, onAuthStateChanged, updateProfile, signOut
+  getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,
+  sendPasswordResetEmail,onAuthStateChanged,updateProfile,signOut,deleteUser
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
-  getFirestore, doc, getDoc, setDoc, updateDoc, addDoc,
-  collection, query, where, getDocs, onSnapshot, orderBy, limit,
-  serverTimestamp, runTransaction
+  getFirestore,doc,getDoc,setDoc,updateDoc,addDoc,collection,query,
+  where,getDocs,onSnapshot,orderBy,limit,serverTimestamp,runTransaction
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCrRxm1YvDQ6OkImMn5yvXc-VtMqS804E8",
-  authDomain: "tom-chat-c2412.firebaseapp.com",
-  projectId: "tom-chat-c2412",
-  storageBucket: "tom-chat-c2412.firebasestorage.app",
-  messagingSenderId: "627903451599",
-  appId: "1:627903451599:web:c0f8b80372637401e002ba",
-  measurementId: "G-C3RTB7NC07"
+const firebaseConfig={
+  apiKey:"AIzaSyCrRxm1YvDQ6OkImMn5yvXc-VtMqS8048",
+  authDomain:"tom-chat-c2412.firebaseapp.com",
+  projectId:"tom-chat-c2412",
+  storageBucket:"tom-chat-c2412.firebasestorage.app",
+  messagingSenderId:"627903451599",
+  appId:"1:627903451599:web:c0f8b80372637401e002ba",
+  measurementId:"G-C3RTB7NC07"
 };
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const $=id=>document.getElementById(id);
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const $ = id => document.getElementById(id);
+let isSignup=true,busy=false,currentUser=null,activeFriend=null;
+let stopFriends=null,stopIncoming=null,stopOutgoing=null,stopMessages=null;
+let currentChatId=null,authGeneration=0,signupInProgress=false;
 
-let isSignup = true;
-let busy = false;
-let currentUser = null;
-let activeFriend = null;
-let stopFriends = null;
-let stopIncoming = null;
-let stopOutgoing = null;
-let stopMessages = null;
-let currentChatId = null;
-let authGeneration = 0;
-
-function status(id, message, error = false) {
-  $(id).textContent = message;
-  $(id).classList.toggle("error", error);
+function status(id,message,error=false){
+  $(id).textContent=message;
+  $(id).classList.toggle("error",error);
 }
-function err(e) {
-  const messages = {
+function err(e){
+  const code=e?.code||"";
+  const messages={
     "auth/email-already-in-use":"هذا البريد مسجل بالفعل.",
     "auth/invalid-email":"البريد الإلكتروني غير صحيح.",
     "auth/weak-password":"كلمة المرور قصيرة جداً.",
     "auth/invalid-credential":"البريد أو كلمة المرور غير صحيحة.",
     "auth/too-many-requests":"محاولات كثيرة؛ حاول لاحقاً.",
     "auth/network-request-failed":"تحقق من اتصال الإنترنت.",
-    "permission-denied":"رفضت قواعد الأمان العملية. تحقق من القواعد المنشورة.",
+    "permission-denied":"رفضت قواعد الأمان العملية. نحتاج مراجعة القواعد المنشورة.",
     "failed-precondition":"قد تحتاج قاعدة البيانات إلى فهرس إضافي."
   };
-  return messages[e.code] || e.message || "حدث خطأ.";
+  return messages[code]||e?.message||"حدث خطأ غير معروف.";
 }
-function showView(id) {
-  ["searchView","requestsView","friendsView","chatView"].forEach(v =>
-    $(v).classList.toggle("hidden",v !== id)
-  );
-  document.querySelectorAll("[data-view]").forEach(b =>
-    b.classList.toggle("secondary",b.dataset.view !== id)
-  );
+function showView(id){
+  ["searchView","requestsView","friendsView","chatView"].forEach(v=>$(v).classList.toggle("hidden",v!==id));
+  document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("secondary",b.dataset.view!==id));
 }
-function makeItem(name, detail = "") {
-  const div = document.createElement("div");
-  div.className = "item";
-  const main = document.createElement("div");
-  main.className = "item-main";
-  const title = document.createElement("div");
-  title.className = "item-name";
-  title.textContent = name;
-  main.append(title);
-  if (detail) {
-    const sub = document.createElement("div");
-    sub.className = "muted";
-    sub.textContent = detail;
-    main.append(sub);
-  }
-  div.append(main);
-  return {div,main};
+function makeItem(name,detail=""){
+  const div=document.createElement("div");div.className="item";
+  const main=document.createElement("div");main.className="item-main";
+  const title=document.createElement("div");title.className="item-name";title.textContent=name;main.append(title);
+  if(detail){const sub=document.createElement("div");sub.className="muted";sub.textContent=detail;main.append(sub);}
+  div.append(main);return {div,main};
 }
-function addButton(parent,label,action,secondary=false) {
-  const b = document.createElement("button");
-  b.type = "button";
-  b.className = "btn small" + (secondary ? " secondary" : "");
-  b.textContent = label;
-  b.addEventListener("click",action);
-  parent.append(b);
-  return b;
+function addButton(parent,label,action,secondary=false){
+  const b=document.createElement("button");b.type="button";
+  b.className="btn small"+(secondary?" secondary":"");b.textContent=label;
+  b.addEventListener("click",action);parent.append(b);return b;
 }
-function pairId(a,b) {
-  return [a,b].sort().join("_");
+function pairId(a,b){return [a,b].sort().join("_");}
+function stopListeners(){
+  [stopFriends,stopIncoming,stopOutgoing,stopMessages].forEach(fn=>{if(fn)fn();});
+  stopFriends=stopIncoming=stopOutgoing=stopMessages=null;
+  currentChatId=null;activeFriend=null;
+  $("messageInput").disabled=true;$("sendBtn").disabled=true;
 }
-function stopListeners() {
-  [stopFriends,stopIncoming,stopOutgoing,stopMessages].forEach(fn => {
-    if (fn) fn();
-  });
-  stopFriends = stopIncoming = stopOutgoing = stopMessages = null;
-  currentChatId = null;
-  activeFriend = null;
-  $("messageInput").disabled = true;
-  $("sendBtn").disabled = true;
-}
-function clearLists() {
-  ["searchResults","incomingRequests","outgoingRequests","friendsList"].forEach(id =>
-    $(id).replaceChildren()
-  );
+function clearLists(){
+  ["searchResults","incomingRequests","outgoingRequests","friendsList"].forEach(id=>$(id).replaceChildren());
 }
 
-$("switchMode").addEventListener("click",() => {
-  isSignup = !isSignup;
-  $("authTitle").textContent = isSignup ? "أهلاً بك في TOM chat" : "مرحباً بعودتك";
-  $("authSubtitle").textContent = isSignup
-    ? "أنشئ حسابك وابدأ التواصل." : "سجّل الدخول للمتابعة.";
+$("switchMode").addEventListener("click",()=>{
+  isSignup=!isSignup;
+  $("authTitle").textContent=isSignup?"أهلاً بك في TOM chat":"مرحباً بعودتك";
+  $("authSubtitle").textContent=isSignup?"أنشئ حسابك وابدأ التواصل.":"سجّل الدخول للمتابعة.";
   $("nameField").classList.toggle("hidden",!isSignup);
-  $("authSubmit").textContent = isSignup ? "إنشاء حساب" : "تسجيل الدخول";
-  $("switchMode").textContent = isSignup
-    ? "عندك حساب؟ سجّل الدخول" : "ما عندك حساب؟ أنشئ حساباً";
+  $("password").autocomplete=isSignup?"new-password":"current-password";
+  $("authSubmit").textContent=isSignup?"إنشاء حساب":"تسجيل الدخول";
+  $("switchMode").textContent=isSignup?"عندك حساب؟ سجّل الدخول":"ما عندك حساب؟ أنشئ حساباً";
   status("authStatus","");
 });
-
-$("forgotBtn").addEventListener("click",async() => {
-  const email = $("email").value.trim();
-  if (!email) {
-    status("authStatus","اكتب بريدك الإلكتروني أولاً.",true);
-    return;
-  }
-  try {
-    await sendPasswordResetEmail(auth,email);
-    status("authStatus","إذا كان البريد مسجلاً، ستصلك رسالة لإعادة التعيين.");
-  } catch(e) {
-    status("authStatus",err(e),true);
-  }
+$("forgotBtn").addEventListener("click",async()=>{
+  const email=$("email").value.trim();
+  if(!email){status("authStatus","اكتب بريدك الإلكتروني أولاً.",true);return;}
+  try{await sendPasswordResetEmail(auth,email);status("authStatus","إذا كان البريد مسجلاً، ستصلك رسالة لإعادة التعيين.");}
+  catch(e){status("authStatus",err(e),true);}
 });
 
-$("authForm").addEventListener("submit",async e => {
-  e.preventDefault();
-  if (busy) return;
-  busy = true;
-  $("authSubmit").disabled = true;
-  try {
-    const email = $("email").value.trim();
-    const password = $("password").value;
+/*
+ * مهم: لا نجري استعلاماً عن username قبل تسجيل الدخول؛
+ * قواعد Firestore الحالية تشترط تسجيل الدخول لقراءة users.
+ */
+$("authForm").addEventListener("submit",async e=>{
+  e.preventDefault();if(busy)return;
+  busy=true;$("authSubmit").disabled=true;
+  try{
+    const email=$("email").value.trim();
+    const password=$("password").value;
 
-    if (!isSignup) {
+    if(!isSignup){
       await signInWithEmailAndPassword(auth,email,password);
-      status("authStatus","");
-      return;
+      status("authStatus","");return;
     }
 
-    const username = $("displayName").value.trim().toLowerCase();
-    if (!/^[a-z0-9_]{3,20}$/.test(username)) {
+    const username=$("displayName").value.trim().toLowerCase();
+    if(!/^[a-z0-9_]{3,20}$/.test(username)){
       throw new Error("اسم المستخدم يجب أن يكون 3–20 حرفاً إنجليزياً أو رقماً أو _.");
     }
 
-    const existing = await getDocs(query(
-      collection(db,"users"),
-      where("usernameLower","==",username),
-      limit(1)
-    ));
-    if (!existing.empty) throw new Error("اسم المستخدم مستخدم. اختر اسماً آخر.");
+    signupInProgress=true;
+    const result=await createUserWithEmailAndPassword(auth,email,password);
+    const user=result.user;
 
-    const result = await createUserWithEmailAndPassword(auth,email,password);
-    await updateProfile(result.user,{displayName:username});
-    await setDoc(doc(db,"users",result.user.uid),{
-      uid:result.user.uid,
-      username,
-      usernameLower:username,
-      createdAt:serverTimestamp()
-    });
-    status("authStatus","تم إنشاء الحساب بنجاح 💜");
-  } catch(e) {
-    status("authStatus",err(e),true);
-  } finally {
-    busy = false;
-    $("authSubmit").disabled = false;
-  }
-});
+    try{
+      await updateProfile(user,{displayName:username});
 
-$("logoutBtn").addEventListener("click",async() => {
-  stopListeners();
-  try {
-    await signOut(auth);
-  } catch(e) {
-    status("appStatus",err(e),true);
-  }
-});
-
-document.querySelectorAll("[data-view]").forEach(b =>
-  b.addEventListener("click",() => showView(b.dataset.view))
-);
-
-async function startApp(user) {
-  const generation = ++authGeneration;
-  stopListeners();
-  currentUser = user;
-  $("authPanel").classList.add("hidden");
-  $("appPanel").classList.remove("hidden");
-  $("welcomeName").textContent = user.displayName || "مستخدم";
-  $("messages").replaceChildren();
-  clearLists();
-  status("appStatus","جاري تحميل حسابك...");
-
-  try {
-    const profileRef = doc(db,"users",user.uid);
-    let profileSnap = await getDoc(profileRef);
-    if (!profileSnap.exists()) {
-      const username = (user.displayName || "").toLowerCase();
-      if (!/^[a-z0-9_]{3,20}$/.test(username)) {
-        throw new Error("ملف المستخدم غير موجود. أنشئ ملفاً صالحاً قبل المتابعة.");
+      // أصبح المستخدم مسجلاً للدخول، لذلك أصبح استعلام users مسموحاً.
+      const existing=await getDocs(query(
+        collection(db,"users"),
+        where("usernameLower","==",username),
+        limit(1)
+      ));
+      if(!existing.empty){
+        await deleteUser(user);
+        throw new Error("اسم المستخدم مستخدم. اختر اسماً آخر.");
       }
-      await setDoc(profileRef,{
+
+      await setDoc(doc(db,"users",user.uid),{
         uid:user.uid,
-        username,
+        username:username,
         usernameLower:username,
         createdAt:serverTimestamp()
       });
+
+      status("authStatus","تم إنشاء الحساب وملف المستخدم بنجاح 💜");
+      await startApp(user);
+    }catch(inner){
+      status("authStatus","تعذّر إكمال إعداد الحساب: "+err(inner)+
+        " إذا كان حساب الدخول قد أُنشئ، سجّل الدخول بعد إصلاح السبب.",true);
+    }finally{
+      signupInProgress=false;
     }
-    if (generation !== authGeneration) return;
-    status("appStatus","أهلاً بك في TOM chat 💜");
-    listenFriends(user);
-    listenRequests(user);
-  } catch(e) {
-    status("appStatus",err(e),true);
+  }catch(e){
+    status("authStatus",err(e),true);
+  }finally{
+    busy=false;$("authSubmit").disabled=false;
   }
-}
+});
 
-function listenFriends(user) {
-  stopFriends = onSnapshot(
-    query(collection(db,"friendships"),
-      where("members","array-contains",user.uid)),
-    async snap => {
-      const list = $("friendsList");
-      list.replaceChildren();
-      if (snap.empty) {
-        list.textContent = "ما عندك أصدقاء بعد. ابحث عن مستخدم لإرسال طلب.";
-        return;
+$("logoutBtn").addEventListener("click",async()=>{
+  stopListeners();
+  try{await signOut(auth);}catch(e){status("appStatus",err(e),true);}
+});
+document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
+
+async function startApp(user){
+  const generation=++authGeneration;
+  stopListeners();currentUser=user;
+  $("authPanel").classList.add("hidden");$("appPanel").classList.remove("hidden");
+  $("welcomeName").textContent=user.displayName||"مستخدم";
+  $("messages").replaceChildren();clearLists();status("appStatus","جاري تحميل حسابك...");
+  try{
+    const profileRef=doc(db,"users",user.uid);
+    let profileSnap=await getDoc(profileRef);
+    if(!profileSnap.exists()){
+      const username=(user.displayName||"").toLowerCase();
+      if(!/^[a-z0-9_]{3,20}$/.test(username)){
+        throw new Error("ملف المستخدم غير موجود. سجّل الدخول باسم مستخدم صالح.");
       }
-
-      for (const d of snap.docs) {
-        const data = d.data();
-        const otherUid = (data.members || []).find(id => id !== user.uid);
-        if (!otherUid) continue;
-        try {
-          const p = await getDoc(doc(db,"users",otherUid));
-          if (!p.exists()) continue;
-          const profile = p.data();
-          const item = makeItem("@"+profile.username);
-          addButton(item.div,"مراسلة",() =>
-            openChat(otherUid,profile.username || "صديق"));
-          list.append(item.div);
-        } catch(e) {
-          status("appStatus",err(e),true);
-        }
-      }
-    },
-    e => status("appStatus",err(e),true)
-  );
-}
-
-function listenRequests(user) {
-  stopIncoming = onSnapshot(
-    query(collection(db,"friendRequests"),
-      where("toUid","==",user.uid),where("status","==","pending")),
-    async snap => {
-      const list = $("incomingRequests");
-      list.replaceChildren();
-      if (snap.empty) list.textContent = "لا توجد طلبات واردة.";
-
-      for (const d of snap.docs) {
-        const r = d.data();
-        try {
-          const p = await getDoc(doc(db,"users",r.fromUid));
-          const item = makeItem(p.exists() ? "@"+p.data().username : "مستخدم");
-          addButton(item.div,"قبول",() => acceptRequest(d.id));
-          addButton(item.div,"رفض",() => declineRequest(d.id),true);
-          list.append(item.div);
-        } catch(e) {
-          status("appStatus",err(e),true);
-        }
-      }
-    },
-    e => status("appStatus",err(e),true)
-  );
-
-  stopOutgoing = onSnapshot(
-    query(collection(db,"friendRequests"),
-      where("fromUid","==",user.uid),where("status","==","pending")),
-    snap => {
-      const list = $("outgoingRequests");
-      list.replaceChildren();
-      if (snap.empty) list.textContent = "لا توجد طلبات مرسلة معلقة.";
-      snap.forEach(() => {
-        list.append(makeItem("طلب صداقة","بانتظار الرد").div);
+      await setDoc(profileRef,{
+        uid:user.uid,username,usernameLower:username,createdAt:serverTimestamp()
       });
-    },
-    e => status("appStatus",err(e),true)
-  );
+    }
+    if(generation!==authGeneration)return;
+    status("appStatus","أهلاً بك في TOM chat 💜");
+    listenFriends(user);listenRequests(user);
+  }catch(e){status("appStatus",err(e),true);}
 }
 
-$("searchForm").addEventListener("submit",async e => {
-  e.preventDefault();
-  if (!currentUser) return;
-  const username = $("searchInput").value.trim().toLowerCase();
-  const results = $("searchResults");
-  results.replaceChildren();
-
-  if (!/^[a-z0-9_]{3,20}$/.test(username)) {
-    results.textContent = "اكتب اسم مستخدم صحيحاً من 3 إلى 20 حرفاً.";
-    return;
-  }
-
-  try {
-    const snap = await getDocs(query(
-      collection(db,"users"),
-      where("usernameLower","==",username),
-      limit(10)
-    ));
-    if (snap.empty) {
-      results.textContent = "لم نجد مستخدماً بهذا الاسم.";
-      return;
+function listenFriends(user){
+  stopFriends=onSnapshot(query(collection(db,"friendships"),where("members","array-contains",user.uid)),async snap=>{
+    const list=$("friendsList");list.replaceChildren();
+    if(snap.empty){list.textContent="ما عندك أصدقاء بعد. ابحث عن مستخدم لإرسال طلب.";return;}
+    for(const d of snap.docs){
+      const data=d.data();const otherUid=(data.members||[]).find(id=>id!==user.uid);
+      if(!otherUid)continue;
+      try{
+        const p=await getDoc(doc(db,"users",otherUid));if(!p.exists())continue;
+        const profile=p.data();const item=makeItem("@"+profile.username);
+        addButton(item.div,"مراسلة",()=>openChat(otherUid,profile.username||"صديق"));
+        list.append(item.div);
+      }catch(e){status("appStatus",err(e),true);}
     }
+  },e=>status("appStatus",err(e),true));
+}
 
-    for (const d of snap.docs) {
-      const p = d.data();
-      if (p.uid === currentUser.uid) {
-        results.append(makeItem("@"+p.username,"هذا حسابك").div);
-        continue;
-      }
-      const item = makeItem("@"+p.username);
-      addButton(item.div,"إرسال طلب",async button => {
-        button.disabled = true;
-        await sendRequest(p.uid);
-        button.disabled = false;
+function listenRequests(user){
+  stopIncoming=onSnapshot(query(collection(db,"friendRequests"),where("toUid","==",user.uid),where("status","==","pending")),async snap=>{
+    const list=$("incomingRequests");list.replaceChildren();
+    if(snap.empty)list.textContent="لا توجد طلبات واردة.";
+    for(const d of snap.docs){
+      const r=d.data();
+      try{
+        const p=await getDoc(doc(db,"users",r.fromUid));
+        const item=makeItem(p.exists()?"@"+p.data().username:"مستخدم");
+        addButton(item.div,"قبول",()=>acceptRequest(d.id));
+        addButton(item.div,"رفض",()=>declineRequest(d.id),true);list.append(item.div);
+      }catch(e){status("appStatus",err(e),true);}
+    }
+  },e=>status("appStatus",err(e),true));
+
+  stopOutgoing=onSnapshot(query(collection(db,"friendRequests"),where("fromUid","==",user.uid),where("status","==","pending")),snap=>{
+    const list=$("outgoingRequests");list.replaceChildren();
+    if(snap.empty)list.textContent="لا توجد طلبات مرسلة معلقة.";
+    snap.forEach(()=>list.append(makeItem("طلب صداقة","بانتظار الرد").div));
+  },e=>status("appStatus",err(e),true));
+}
+
+$("searchForm").addEventListener("submit",async e=>{
+  e.preventDefault();if(!currentUser)return;
+  const username=$("searchInput").value.trim().toLowerCase();
+  const results=$("searchResults");results.replaceChildren();
+  if(!/^[a-z0-9_]{3,20}$/.test(username)){
+    results.textContent="اكتب اسم مستخدم صحيحاً من 3 إلى 20 حرفاً.";return;
+  }
+  try{
+    const snap=await getDocs(query(collection(db,"users"),where("usernameLower","==",username),limit(10)));
+    if(snap.empty){results.textContent="لم نجد مستخدماً بهذا الاسم.";return;}
+    for(const d of snap.docs){
+      const p=d.data();
+      if(p.uid===currentUser.uid){results.append(makeItem("@"+p.username,"هذا حسابك").div);continue;}
+      const item=makeItem("@"+p.username);
+      addButton(item.div,"إرسال طلب",async button=>{
+        button.disabled=true;
+        try{await sendRequest(p.uid);}finally{button.disabled=false;}
       });
       results.append(item.div);
     }
-  } catch(e) {
-    status("appStatus",err(e),true);
-  }
+  }catch(e){status("appStatus",err(e),true);}
 });
 
-async function sendRequest(toUid) {
-  if (!currentUser || toUid === currentUser.uid) return;
-  try {
-    const id = pairId(currentUser.uid,toUid);
-    const friendship = await getDoc(doc(db,"friendships",id));
-    if (friendship.exists()) {
-      status("appStatus","أنتم أصدقاء بالفعل.");
-      return;
-    }
+async function sendRequest(toUid){
+  if(!currentUser||toUid===currentUser.uid)return;
+  try{
+    const id=pairId(currentUser.uid,toUid);
+    const friendship=await getDoc(doc(db,"friendships",id));
+    if(friendship.exists()){status("appStatus","أنتم أصدقاء بالفعل.");return;}
 
-    const outgoing = await getDocs(query(
-      collection(db,"friendRequests"),
-      where("fromUid","==",currentUser.uid),
-      where("toUid","==",toUid),
-      where("status","==","pending"),
-      limit(1)
-    ));
-    if (!outgoing.empty) {
-      status("appStatus","أرسلت طلباً لهذا المستخدم من قبل.");
-      return;
-    }
+    const outgoing=await getDocs(query(collection(db,"friendRequests"),
+      where("fromUid","==",currentUser.uid),where("toUid","==",toUid),
+      where("status","==","pending"),limit(1)));
+    if(!outgoing.empty){status("appStatus","أرسلت طلباً لهذا المستخدم من قبل.");return;}
 
-    const incoming = await getDocs(query(
-      collection(db,"friendRequests"),
-      where("fromUid","==",toUid),
-      where("toUid","==",currentUser.uid),
-      where("status","==","pending"),
-      limit(1)
-    ));
-    if (!incoming.empty) {
-      status("appStatus","هذا المستخدم أرسل لك طلباً. يمكنك قبوله من تبويب الطلبات.");
-      return;
-    }
+    const incoming=await getDocs(query(collection(db,"friendRequests"),
+      where("fromUid","==",toUid),where("toUid","==",currentUser.uid),
+      where("status","==","pending"),limit(1)));
+    if(!incoming.empty){status("appStatus","هذا المستخدم أرسل لك طلباً. يمكنك قبوله من تبويب الطلبات.");return;}
 
     await addDoc(collection(db,"friendRequests"),{
-      fromUid:currentUser.uid,
-      toUid,
-      status:"pending",
-      createdAt:serverTimestamp()
+      fromUid:currentUser.uid,toUid,status:"pending",createdAt:serverTimestamp()
     });
     status("appStatus","تم إرسال طلب الصداقة 💜");
-  } catch(e) {
-    status("appStatus",err(e),true);
-  }
+  }catch(e){status("appStatus",err(e),true);}
 }
 
-async function acceptRequest(requestId) {
-  if (!currentUser) return;
-  try {
-    const reqRef = doc(db,"friendRequests",requestId);
-    await runTransaction(db,async tx => {
-      const reqSnap = await tx.get(reqRef);
-      if (!reqSnap.exists()) throw new Error("طلب الصداقة غير موجود.");
-
-      const r = reqSnap.data();
-      if (r.toUid !== currentUser.uid || r.status !== "pending") {
-        throw new Error("طلب الصداقة لم يعد متاحاً.");
-      }
-
-      const id = pairId(r.fromUid,r.toUid);
-      const friendshipRef = doc(db,"friendships",id);
-      const friendshipSnap = await tx.get(friendshipRef);
-      if (friendshipSnap.exists()) throw new Error("أنتم أصدقاء بالفعل.");
-
-      // requestId is required by the matching Firestore rules.
-      tx.set(friendshipRef,{
-        members:[r.fromUid,r.toUid].sort(),
-        requestId:requestId,
-        createdAt:serverTimestamp()
-      });
-      tx.update(reqRef,{
-        status:"accepted",
-        respondedAt:serverTimestamp()
-      });
+async function acceptRequest(requestId){
+  if(!currentUser)return;
+  try{
+    const reqRef=doc(db,"friendRequests",requestId);
+    await runTransaction(db,async tx=>{
+      const reqSnap=await tx.get(reqRef);
+      if(!reqSnap.exists())throw new Error("طلب الصداقة غير موجود.");
+      const r=reqSnap.data();
+      if(r.toUid!==currentUser.uid||r.status!=="pending")throw new Error("طلب الصداقة لم يعد متاحاً.");
+      const id=pairId(r.fromUid,r.toUid);const friendshipRef=doc(db,"friendships",id);
+      const friendshipSnap=await tx.get(friendshipRef);
+      if(friendshipSnap.exists())throw new Error("أنتم أصدقاء بالفعل.");
+      tx.set(friendshipRef,{members:[r.fromUid,r.toUid].sort(),requestId,createdAt:serverTimestamp()});
+      tx.update(reqRef,{status:"accepted",respondedAt:serverTimestamp()});
     });
     status("appStatus","تم قبول طلب الصداقة بنجاح 💜");
-  } catch(e) {
-    status("appStatus",err(e),true);
-  }
+  }catch(e){status("appStatus",err(e),true);}
 }
-
-async function declineRequest(requestId) {
-  if (!currentUser) return;
-  try {
-    const reqRef = doc(db,"friendRequests",requestId);
-    const snap = await getDoc(reqRef);
-    if (!snap.exists() || snap.data().toUid !== currentUser.uid ||
-        snap.data().status !== "pending") {
+async function declineRequest(requestId){
+  if(!currentUser)return;
+  try{
+    const reqRef=doc(db,"friendRequests",requestId);const snap=await getDoc(reqRef);
+    if(!snap.exists()||snap.data().toUid!==currentUser.uid||snap.data().status!=="pending")
       throw new Error("طلب الصداقة لم يعد متاحاً.");
-    }
-    await updateDoc(reqRef,{
-      status:"declined",
-      respondedAt:serverTimestamp()
-    });
+    await updateDoc(reqRef,{status:"declined",respondedAt:serverTimestamp()});
     status("appStatus","تم رفض الطلب.");
-  } catch(e) {
-    status("appStatus",err(e),true);
-  }
+  }catch(e){status("appStatus",err(e),true);}
 }
 
-async function openChat(friendUid,friendName) {
-  if (!currentUser || friendUid === currentUser.uid) return;
-  const id = pairId(currentUser.uid,friendUid);
-
-  try {
-    const friendship = await getDoc(doc(db,"friendships",id));
-    if (!friendship.exists() ||
-        !(friendship.data().members || []).includes(currentUser.uid) ||
-        !(friendship.data().members || []).includes(friendUid)) {
+async function openChat(friendUid,friendName){
+  if(!currentUser||friendUid===currentUser.uid)return;
+  const id=pairId(currentUser.uid,friendUid);
+  try{
+    const friendship=await getDoc(doc(db,"friendships",id));
+    if(!friendship.exists()||!(friendship.data().members||[]).includes(currentUser.uid)||
+       !(friendship.data().members||[]).includes(friendUid))
       throw new Error("المحادثة متاحة للأصدقاء المقبولين فقط.");
-    }
 
-    if (stopMessages) stopMessages();
-    activeFriend = {uid:friendUid,name:friendName};
-    currentChatId = id;
-    $("chatTitle").textContent = "@"+friendName;
-    $("chatSubtitle").textContent = "محادثة خاصة";
-    $("messageInput").disabled = false;
-    $("sendBtn").disabled = false;
-    $("messages").replaceChildren();
-    showView("chatView");
+    if(stopMessages)stopMessages();
+    activeFriend={uid:friendUid,name:friendName};currentChatId=id;
+    $("chatTitle").textContent="@"+friendName;$("chatSubtitle").textContent="محادثة خاصة";
+    $("messageInput").disabled=false;$("sendBtn").disabled=false;
+    $("messages").replaceChildren();showView("chatView");
 
-    stopMessages = onSnapshot(query(
-      collection(db,"chats",id,"messages"),
-      orderBy("createdAt","asc"),
-      limit(100)
-    ),snap => {
-      const box = $("messages");
-      box.replaceChildren();
-
-      if (snap.empty) {
-        box.textContent = "لا توجد رسائل بعد. ابدأ المحادثة!";
-        return;
-      }
-
-      snap.forEach(d => {
-        const m = d.data();
-        const item = document.createElement("div");
-        item.className = "msg"+(m.uid === currentUser.uid ? " mine" : "");
-        const name = document.createElement("div");
-        name.className = "msg-name";
-        name.textContent = m.name || "مستخدم";
-        const body = document.createElement("div");
-        body.className = "msg-body";
-        body.textContent = m.text || "";
-        const time = document.createElement("div");
-        time.className = "msg-time";
-        time.textContent = m.createdAt?.toDate
-          ? m.createdAt.toDate().toLocaleString("ar") : "الآن";
-        item.append(name,body,time);
-        box.append(item);
+    stopMessages=onSnapshot(query(collection(db,"chats",id,"messages"),
+      orderBy("createdAt","asc"),limit(100)),snap=>{
+      const box=$("messages");box.replaceChildren();
+      if(snap.empty){box.textContent="لا توجد رسائل بعد. ابدأ المحادثة!";return;}
+      snap.forEach(d=>{
+        const m=d.data();const item=document.createElement("div");
+        item.className="msg"+(m.uid===currentUser.uid?" mine":"");
+        const name=document.createElement("div");name.className="msg-name";name.textContent=m.name||"مستخدم";
+        const body=document.createElement("div");body.className="msg-body";body.textContent=m.text||"";
+        const time=document.createElement("div");time.className="msg-time";
+        time.textContent=m.createdAt?.toDate?m.createdAt.toDate().toLocaleString("ar"):"الآن";
+        item.append(name,body,time);box.append(item);
       });
-      box.scrollTop = box.scrollHeight;
-    },e => status("appStatus",err(e),true));
-  } catch(e) {
-    status("appStatus",err(e),true);
-  }
+      box.scrollTop=box.scrollHeight;
+    },e=>status("appStatus",err(e),true));
+  }catch(e){status("appStatus",err(e),true);}
 }
 
-$("messageForm").addEventListener("submit",async e => {
+$("messageForm").addEventListener("submit",async e=>{
   e.preventDefault();
-  const text = $("messageInput").value.trim();
-  if (!currentUser || !activeFriend || !currentChatId || !text) return;
-  if (text.length > 2000) {
-    status("appStatus","الرسالة أطول من الحد المسموح.",true);
-    return;
-  }
-
-  const chatId = currentChatId;
-  const friendUid = activeFriend.uid;
-  $("sendBtn").disabled = true;
-
-  try {
-    const friendship = await getDoc(doc(db,"friendships",chatId));
-    if (!friendship.exists() ||
-        !(friendship.data().members || []).includes(currentUser.uid) ||
-        !(friendship.data().members || []).includes(friendUid)) {
+  const text=$("messageInput").value.trim();
+  if(!currentUser||!activeFriend||!currentChatId||!text)return;
+  if(text.length>2000){status("appStatus","الرسالة أطول من الحد المسموح.",true);return;}
+  const chatId=currentChatId,friendUid=activeFriend.uid;
+  $("sendBtn").disabled=true;
+  try{
+    const friendship=await getDoc(doc(db,"friendships",chatId));
+    if(!friendship.exists()||!(friendship.data().members||[]).includes(currentUser.uid)||
+       !(friendship.data().members||[]).includes(friendUid))
       throw new Error("لا تملك صلاحية إرسال الرسائل في هذه المحادثة.");
-    }
-
     await addDoc(collection(db,"chats",chatId,"messages"),{
-      uid:currentUser.uid,
-      name:currentUser.displayName || "مستخدم",
-      text,
-      createdAt:serverTimestamp()
+      uid:currentUser.uid,name:currentUser.displayName||"مستخدم",
+      text,createdAt:serverTimestamp()
     });
-    $("messageInput").value = "";
-    status("appStatus","");
-  } catch(e) {
-    status("appStatus",err(e),true);
-  } finally {
-    $("sendBtn").disabled = false;
-  }
+    $("messageInput").value="";status("appStatus","");
+  }catch(e){status("appStatus",err(e),true);}
+  finally{$("sendBtn").disabled=false;}
 });
 
-onAuthStateChanged(auth,user => {
-  currentUser = user;
-  if (user) {
-    startApp(user);
-  } else {
-    authGeneration++;
-    stopListeners();
-    $("appPanel").classList.add("hidden");
-    $("authPanel").classList.remove("hidden");
-    $("welcomeName").textContent = "";
-    status("authStatus","");
+onAuthStateChanged(auth,user=>{
+  currentUser=user;
+  // يمنع تشغيل شاشة التطبيق قبل اكتمال إنشاء ملف المستخدم أثناء التسجيل.
+  if(signupInProgress)return;
+  if(user){startApp(user);}
+  else{
+    authGeneration++;stopListeners();
+    $("appPanel").classList.add("hidden");$("authPanel").classList.remove("hidden");
+    $("welcomeName").textContent="";status("authStatus","");
   }
 });
 </script>
